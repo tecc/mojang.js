@@ -3,6 +3,7 @@
   "version": "0.1.0-alpha",
   "description": "mojang.js is a simple wrapper for Mojangs APIs, written in TypeScript.",
   "main": "dist/index.js",
+  "types": "dist/lib.d.ts",
   "directories": {
     "example": "./examples",
     "lib": "./dist"
@@ -42,6 +43,5 @@
     "superagent": "^6.1.0",
     "uuid": "^8.3.2"
   },
-  "type": "commonjs",
-  "types": "index.d.ts"
+  "type": "commonjs"
 }
