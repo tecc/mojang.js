@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 module.exports = async function () {
-    const MojangJS = require('mojang.js');
+    const MojangJS = require('@tecc/mojang.js');
     const mojang = new MojangJS.Mojang.Client();
 
     const player = 'Notch';

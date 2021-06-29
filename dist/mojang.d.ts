@@ -1,8 +1,17 @@
 import { BaseClient } from './BaseClient';
+import type { NullValue } from './util';
+/**
+ * Player name data.
+ *
+ * Provided by {@link Client.getUuid} and {@link Client.getUuids}.
+ */
 export declare type PlayerNameData = {
     name: string;
     id: string;
 };
+/**
+ * Entry to {@link PlayerNameHistory}.
+ */
 export declare type PlayerNameHistoryEntry = {
     /**
      * Their name in this entry.
@@ -13,18 +22,42 @@ export declare type PlayerNameHistoryEntry = {
      */
     changedToAt?: Date;
 };
+/**
+ * Player name history.
+ *
+ * Provided by {@link Client.getNameHistory}.
+ */
 export declare type PlayerNameHistory = {
-    uuid: string;
+    id: string;
     history: PlayerNameHistoryEntry[];
     current: PlayerNameHistoryEntry;
 };
+export declare type PlayerProfileProperty = {
+    name: string;
+    value: any;
+    signature?: string;
+};
+export declare type PlayerSkin = {
+    slim: boolean;
+    url: string;
+};
+export declare class PlayerProfile {
+    id: string;
+    name: string;
+    properties: PlayerProfileProperty[];
+    private textures;
+    constructor(data: Partial<PlayerProfile>);
+    getProperty(name: string): PlayerProfileProperty | NullValue;
+    getSkin(): PlayerSkin | NullValue;
+    getCape(): string | NullValue;
+}
 /**
  * Mojang API client wrapper.
- * The specifications for the API this class wraps around is available at {@link https://wiki.vg/Mojang_API}
+ * The specifications for the API this class wraps around is available at {@link https://wiki.vg/Mojang_API}.
  */
 export declare class Client extends BaseClient {
     /**
-     * Constructs a new Mojang API client.
+     * Constructs a new {@link Client Mojang API} client.
      */
     constructor();
     /**
@@ -48,4 +81,5 @@ export declare class Client extends BaseClient {
      * @returns {Promise<PlayerNameHistory>} The players name history
      */
     getNameHistory(uuid: string): Promise<PlayerNameHistory>;
+    getProfile(uuid: string): Promise<PlayerProfile>;
 }

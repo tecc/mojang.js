@@ -43,7 +43,7 @@ fs.readdir(distDir, (err, files) => {
         }
         const filteredContent = part.content
             .replaceAll(/declare ?/g, '')
-            .replaceAll(/from '\.\//g, 'from \'mojang.js/')
+            .replaceAll(/from '\.\//g, `from \'${pkg.name}/`)
             .split('\n')
             .map((s) => '    ' + s)
             .join('\n');

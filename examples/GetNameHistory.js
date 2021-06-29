@@ -1,7 +1,7 @@
 // Require Mojang.JS
 const MojangJS = require('@tecc/mojang.js');
 // Create Mojang client
-const mojang = new MojangJS.Mojang.Client();
+const mojang = new MojangJS.MojangClient();
 
 // specify player to get name history for
 const player = '398c7569-3f15-4998-b0d9-be91a9ac935c'; // this is the uuid of the player MarcusSlover

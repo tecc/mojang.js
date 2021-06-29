@@ -1,4 +1,10 @@
 import superagent from 'superagent';
+// no type definitions
+// @ts-ignore
+import cachePlugin from 'superagent-cache-plugin';
+// @ts-ignore
+import CacheModule from 'cache-service-cache-module';
+
 import * as Util from './util';
 import type { NullValue } from './util';
 
@@ -6,16 +12,32 @@ export type QueryParams = {[key: string]: string | number | NullValue};
 export type HTTPMethod = 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH'
 
 export abstract class BaseClient {
+    /**
+     * The base URL of where the client makes requests.
+     */
     baseUrl: string;
+    /**
+     * The underlying agent, from Superagent.
+     */
     agent: superagent.SuperAgentStatic & superagent.Request
+    /**
+     * The cache module.
+     * Any type, since the package used for caching doesn't provide
+     */
+    cache: any
 
     /**
      * Constructs a new API client.
      * @param baseUrl The base URL for requests made by this client.
      */
     constructor(baseUrl: string) {
+        // base constructions
         this.baseUrl = baseUrl;
         this.agent = superagent.agent();
+
+        // enable caching
+        this.cache = new CacheModule({ defaultExpiration: 60 });
+        this.agent.use(cachePlugin(this.cache));
     }
     /**
      * Gets a URL based on the {@link BaseClient.baseUrl} and path specified.

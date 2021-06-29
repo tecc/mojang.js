@@ -2,11 +2,19 @@ import { BaseClient } from './BaseClient';
 import type { NullValue } from './util';
 import * as Util from './util';
 
+/**
+ * Player name data.
+ *
+ * Provided by {@link Client.getUuid} and {@link Client.getUuids}.
+ */
 export type PlayerNameData = {
     name: string;
     id: string;
 }
 
+/**
+ * Entry to {@link PlayerNameHistory}.
+ */
 export type PlayerNameHistoryEntry = {
     /**
      * Their name in this entry.
@@ -17,19 +25,90 @@ export type PlayerNameHistoryEntry = {
      */
     changedToAt?: Date;
 }
+/**
+ * Player name history.
+ *
+ * Provided by {@link Client.getNameHistory}.
+ */
 export type PlayerNameHistory = {
-    uuid: string;
+    id: string;
     history: PlayerNameHistoryEntry[];
     current: PlayerNameHistoryEntry;
 }
 
+export type PlayerProfileProperty = {
+    name: string;
+    value: any;
+    signature?: string;
+}
+type _PlayerTexturesObj = {
+    timestamp: number;
+    profileId: string;
+    profileName: string;
+    signatureRequired?: boolean;
+    textures: {
+        SKIN?: {
+            url: string
+            metadata?: {
+                model: 'slim'
+            }
+        },
+        CAPE?: {
+            url: string
+        }
+    }
+}
+export type PlayerSkin = {
+    slim: boolean;
+    url: string;
+}
+export class PlayerProfile {
+    id: string;
+    name: string;
+    properties: PlayerProfileProperty[];
+    private textures: _PlayerTexturesObj;
+
+    constructor(data: Partial<PlayerProfile>) {
+        if (!data) throw new Error('Player profile data cannot be null!');
+        this.id = data.id!;
+        this.name = data.name!;
+        this.properties = data.properties!;
+
+        // textures
+        const prop = this.getProperty('textures');
+        if (prop == undefined) throw new Error('Profile property textures is null');
+        this.textures = JSON.parse(Util.base64Decode(prop.value));
+    }
+
+    getProperty(name: string): PlayerProfileProperty | NullValue {
+        for (const property of this.properties) {
+            if (property.name == name) {
+                return property;
+            }
+        }
+        return null;
+    }
+
+    getSkin(): PlayerSkin | NullValue {
+        const source = this.textures.textures.SKIN;
+        return source ? {
+            slim: source.metadata ? source.metadata.model == 'slim' : false,
+            url: source.url
+        } : null;
+    }
+    getCape(): string | NullValue {
+        const source = this.textures.textures.CAPE;
+        return source ? source.url : null;
+    }
+}
+
 /**
  * Mojang API client wrapper.
- * The specifications for the API this class wraps around is available at {@link https://wiki.vg/Mojang_API}
+ * The specifications for the API this class wraps around is available at {@link https://wiki.vg/Mojang_API}.
  */
 export class Client extends BaseClient {
     /**
-     * Constructs a new Mojang API client.
+     * Constructs a new {@link Client Mojang API} client.
      */
     constructor() {
         super('https://api.mojang.com');
@@ -110,12 +189,23 @@ export class Client extends BaseClient {
                         return entry;
                     });
                     resolve({
-                        uuid: Util.expandUuid(uuid),
+                        id: Util.expandUuid(uuid),
                         current: history[history.length - 1],
                         history: history
                     });
                 })
                 .catch(reject);
         }));
+    }
+
+    getProfile(uuid: string): Promise<PlayerProfile> {
+        return new Promise<PlayerProfile>((resolve, reject) => {
+            this.agent.get(`https://sessionserver.mojang.com/session/minecraft/profile/${uuid}`)
+                .then((response) => {
+                    const profile: PlayerProfile = new PlayerProfile(response.body);
+                    resolve(profile);
+                })
+                .catch(reject);
+        });
     }
 }

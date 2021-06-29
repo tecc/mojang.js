@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 module.exports = async function () {
-    const MojangJS = require('mojang.js');
+    const MojangJS = require('@tecc/mojang.js');
 
     function isUndefined(name, val) {
         if (!val) throw new Error(`${name} is undefined`);

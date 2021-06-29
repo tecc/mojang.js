@@ -1,13 +1,24 @@
 declare module '@tecc/mojang.js/BaseClient' {
     import superagent from 'superagent';
-    import type { NullValue } from 'mojang.js/util';
+    import type { NullValue } from '@tecc/mojang.js/util';
     export type QueryParams = {
         [key: string]: string | number | NullValue;
     };
     export type HTTPMethod = 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH';
     export abstract class BaseClient {
+        /**
+         * The base URL of where the client makes requests.
+         */
         baseUrl: string;
+        /**
+         * The underlying agent, from Superagent.
+         */
         agent: superagent.SuperAgentStatic & superagent.Request;
+        /**
+         * The cache module.
+         * Any type, since the package used for caching doesn't provide
+         */
+        cache: any;
         /**
          * Constructs a new API client.
          * @param baseUrl The base URL for requests made by this client.
@@ -28,18 +39,29 @@ declare module '@tecc/mojang.js/BaseClient' {
     
 }
 declare module '@tecc/mojang.js' {
-    export * as Base from 'mojang.js/BaseClient';
-    export * as Mojang from 'mojang.js/mojang';
-    export * as Yggdrasil from 'mojang.js/yggdrasil';
-    export * as Util from 'mojang.js/util';
+    export * as Base from '@tecc/mojang.js/BaseClient';
+    export * as Mojang from '@tecc/mojang.js/mojang';
+    export { Client as MojangClient } from '@tecc/mojang.js/mojang';
+    export * as Yggdrasil from '@tecc/mojang.js/yggdrasil';
+    export { Client as YggdrasilClient } from '@tecc/mojang.js/yggdrasil';
+    export * as Util from '@tecc/mojang.js/util';
     
 }
 declare module '@tecc/mojang.js/mojang' {
-    import { BaseClient } from 'mojang.js/BaseClient';
+    import { BaseClient } from '@tecc/mojang.js/BaseClient';
+    import type { NullValue } from '@tecc/mojang.js/util';
+    /**
+     * Player name data.
+     *
+     * Provided by {@link Client.getUuid} and {@link Client.getUuids}.
+     */
     export type PlayerNameData = {
         name: string;
         id: string;
     };
+    /**
+     * Entry to {@link PlayerNameHistory}.
+     */
     export type PlayerNameHistoryEntry = {
         /**
          * Their name in this entry.
@@ -50,18 +72,42 @@ declare module '@tecc/mojang.js/mojang' {
          */
         changedToAt?: Date;
     };
+    /**
+     * Player name history.
+     *
+     * Provided by {@link Client.getNameHistory}.
+     */
     export type PlayerNameHistory = {
-        uuid: string;
+        id: string;
         history: PlayerNameHistoryEntry[];
         current: PlayerNameHistoryEntry;
     };
+    export type PlayerProfileProperty = {
+        name: string;
+        value: any;
+        signature?: string;
+    };
+    export type PlayerSkin = {
+        slim: boolean;
+        url: string;
+    };
+    export class PlayerProfile {
+        id: string;
+        name: string;
+        properties: PlayerProfileProperty[];
+        private textures;
+        constructor(data: Partial<PlayerProfile>);
+        getProperty(name: string): PlayerProfileProperty | NullValue;
+        getSkin(): PlayerSkin | NullValue;
+        getCape(): string | NullValue;
+    }
     /**
      * Mojang API client wrapper.
-     * The specifications for the API this class wraps around is available at {@link https://wiki.vg/Mojang_API}
+     * The specifications for the API this class wraps around is available at {@link https://wiki.vg/Mojang_API}.
      */
     export class Client extends BaseClient {
         /**
-         * Constructs a new Mojang API client.
+         * Constructs a new {@link Client Mojang API} client.
          */
         constructor();
         /**
@@ -85,6 +131,7 @@ declare module '@tecc/mojang.js/mojang' {
          * @returns {Promise<PlayerNameHistory>} The players name history
          */
         getNameHistory(uuid: string): Promise<PlayerNameHistory>;
+        getProfile(uuid: string): Promise<PlayerProfile>;
     }
     
 }
@@ -97,11 +144,13 @@ declare module '@tecc/mojang.js/util' {
     export function isUuid(uuid: string): boolean;
     export function cleanUuid(uuid: string): string;
     export function expandUuid(uuid: string): string;
+    export function base64Decode(data: string): string;
+    export function base64encode(data: any): string;
     
 }
 declare module '@tecc/mojang.js/yggdrasil' {
-    import { BaseClient } from 'mojang.js/BaseClient';
-    export class YggdrasilClient extends BaseClient {
+    import { BaseClient } from '@tecc/mojang.js/BaseClient';
+    export class Client extends BaseClient {
         constructor();
     }
     
