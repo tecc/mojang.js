@@ -1,5 +1,5 @@
 # mojang.js
-![npm](https://img.shields.io/npm/v/mojang.js?style=flat-square) ![GitHub](https://img.shields.io/github/license/tecc/mojang.js?style=flat-square)
+[![npm](https://img.shields.io/npm/v/%40tecc%2Fmojang.js?style=flat-square)](https://npmjs.com/package/@tecc/mojang.js) ![GitHub](https://img.shields.io/github/license/tecc/mojang.js?style=flat-square)
 
 > **Note**<br>
 > This package is currently under development.
@@ -14,9 +14,7 @@ View the [license file]{@page License} for the full license.
 
 ## Installation
 
-To install **mojang.js**, you only need to run `npm install mojang.js`.
-> Currently, the package is only available by installing it through the repository: `npm install tecc/mojang.js#dev`.
-> I'm trying to get npm to let me publish it so that it can be installed using the method described above. 
+To install **mojang.js**, you only need to run `npm install  @tecc/mojang.js`.
 
 If you're using TypeScript, don't worry - `mojang.js` uses TypeScript too under the hood, and provides complete type declarations.
 

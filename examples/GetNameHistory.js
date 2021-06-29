@@ -1,5 +1,5 @@
 // Require Mojang.JS
-const MojangJS = require('mojang.js');
+const MojangJS = require('@tecc/mojang.js');
 // Create Mojang client
 const mojang = new MojangJS.Mojang.Client();
 
