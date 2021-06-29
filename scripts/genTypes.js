@@ -6,7 +6,10 @@ const child = require('child_process');
 
 const distDir = path.resolve(pkgdir.sync(), 'dist');
 const scriptsDir = path.resolve(pkgdir.sync(), 'scripts');
-const template = fs.readFileSync(path.resolve(scriptsDir, 'typedefTemplate.template')).toString('utf-8');
+const template =
+    'declare module \'{moduleName}\' {\n' +
+    '{content}\n' +
+    '}';
 const outputName = 'lib.d.ts';
 
 console.log('Resolving files in directory', distDir);
