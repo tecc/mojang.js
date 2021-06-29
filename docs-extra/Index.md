@@ -15,6 +15,8 @@ View the [license file]{@page License} for the full license.
 ## Installation
 
 To install **mojang.js**, you only need to run `npm install mojang.js`.
+> Currently, the package is only available by installing it through the repository: `npm install tecc/mojang.js#dev`.
+> I'm trying to get npm to let me publish it so that it can be installed using the method described above. 
 
 If you're using TypeScript, don't worry - `mojang.js` uses TypeScript too under the hood, and provides complete type declarations.
 
