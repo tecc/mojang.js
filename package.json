@@ -1,12 +1,13 @@
 {
   "name": "@tecc/mojang.js",
-  "version": "0.1.0-alpha",
+  "version": "0.1.2-alpha",
   "description": "mojang.js is a simple wrapper for Mojangs APIs, written in TypeScript.",
   "main": "dist/index.js",
   "types": "dist/lib.d.ts",
   "directories": {
     "example": "./examples",
-    "lib": "./dist"
+    "lib": "./dist",
+    "test": "./scripts/tests"
   },
   "private": false,
   "scripts": {
@@ -46,12 +47,12 @@
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^4.28.0",
     "eslint": "^7.29.0",
-    "pkg-dir": "^5.0.0",
     "typedoc": "^0.21.2",
-    "typedoc-plugin-pages-fork": "^0.0.1",
-    "typescript": "^4.3.4"
+    "typedoc-plugin-pages-fork": "^0.0.1"
   },
   "dependencies": {
+    "typescript": "^4.3.4",
+    "pkg-dir": "^5.0.0",
     "superagent": "^6.1.0",
     "uuid": "^8.3.2"
   }

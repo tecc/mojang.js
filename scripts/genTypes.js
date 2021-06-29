@@ -12,7 +12,6 @@ const template =
 const outputName = 'lib.d.ts';
 
 const pkg = require('../package.json');
-pkg.name = pkg.name.replaceAll(/@\w+\//g, '');
 
 console.log('Resolving files in directory', distDir);
 fs.readdir(distDir, (err, files) => {

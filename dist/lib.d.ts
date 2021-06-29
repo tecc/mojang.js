@@ -1,4 +1,4 @@
-declare module 'mojang.js/BaseClient' {
+declare module '@tecc/mojang.js/BaseClient' {
     import superagent from 'superagent';
     import type { NullValue } from 'mojang.js/util';
     export type QueryParams = {
@@ -27,14 +27,14 @@ declare module 'mojang.js/BaseClient' {
     }
     
 }
-declare module 'mojang.js' {
+declare module '@tecc/mojang.js' {
     export * as Base from 'mojang.js/BaseClient';
     export * as Mojang from 'mojang.js/mojang';
     export * as Yggdrasil from 'mojang.js/yggdrasil';
     export * as Util from 'mojang.js/util';
     
 }
-declare module 'mojang.js/mojang' {
+declare module '@tecc/mojang.js/mojang' {
     import { BaseClient } from 'mojang.js/BaseClient';
     export type PlayerNameData = {
         name: string;
@@ -88,7 +88,7 @@ declare module 'mojang.js/mojang' {
     }
     
 }
-declare module 'mojang.js/util' {
+declare module '@tecc/mojang.js/util' {
     export type NullValue = undefined | null;
     export type PackageDetails = {
         version: string;
@@ -99,7 +99,7 @@ declare module 'mojang.js/util' {
     export function expandUuid(uuid: string): string;
     
 }
-declare module 'mojang.js/yggdrasil' {
+declare module '@tecc/mojang.js/yggdrasil' {
     import { BaseClient } from 'mojang.js/BaseClient';
     export class YggdrasilClient extends BaseClient {
         constructor();
