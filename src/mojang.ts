@@ -40,9 +40,9 @@ export class Client extends BaseClient {
      * Gets a players UUID by their username.
      * You can choose when the username should've been used, instead of whoever as it now with this.
      * 
-     * @param username The username of the player to get the UUID for
-     * @param at When this username should've been used for the UUID (please clarify)
-     * @returns The player name data
+     * @param {string} username The username of the player to get the UUID for
+     * @param {Date} at When this username should've been used for the UUID (please clarify)
+     * @returns {Promise<PlayerNameData>} The player name data
      */
     getUuid(username: string, at?: Date): Promise<PlayerNameData> {
         return new Promise<PlayerNameData>((resolve, reject) => {
@@ -63,8 +63,8 @@ export class Client extends BaseClient {
 
     /**
      * Gets a list of UUIDs for 
-     * @param usernames The usernames to get their corresponding UUIDs for.
-     * @returns A map of the players' usernames to their data object. 
+     * @param {string[]} usernames The usernames to get their corresponding UUIDs for.
+     * @returns {Promise<Map<string, PlayerNameData>>} A map of the players' usernames to their data object.
      */
     getUuids(usernames: string[]): Promise<Map<string, PlayerNameData>> {
         return new Promise<Map<string, PlayerNameData>>((resolve, reject) => {
