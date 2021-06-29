@@ -8,7 +8,7 @@ export type PackageDetails = {
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 export const packageDetails: PackageDetails = require('../package.json');
 
-export function validate(uuid: string): boolean {
+export function isUuid(uuid: string): boolean {
     return UUID.validate(uuid) || UUID.validate(expandUuid(uuid));
 }
 export function cleanUuid(uuid: string): string {

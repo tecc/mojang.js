@@ -81,7 +81,8 @@ declare module 'mojang.js/mojang' {
         getUuids(usernames: string[]): Promise<Map<string, PlayerNameData>>;
         /**
          * Gets a players name history by their UUID.
-         * @param uuid The UUID of the player to get the name history for.
+         * @param {string} uuid The UUID of the player to get the name history for.
+         * @returns {Promise<PlayerNameHistory>} The players name history
          */
         getNameHistory(uuid: string): Promise<PlayerNameHistory>;
     }
@@ -93,7 +94,7 @@ declare module 'mojang.js/util' {
         version: string;
     };
     export const packageDetails: PackageDetails;
-    export function validate(uuid: string): boolean;
+    export function isUuid(uuid: string): boolean;
     export function cleanUuid(uuid: string): string;
     export function expandUuid(uuid: string): string;
     

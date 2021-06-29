@@ -96,6 +96,10 @@ export class Client extends BaseClient {
      */
     getNameHistory(uuid: string): Promise<PlayerNameHistory> {
         return new Promise<PlayerNameHistory>(((resolve, reject) => {
+            if (!Util.isUuid(uuid)) {
+                throw new Error(`'uuid' parameter must be a valid UUID, got ${uuid}`);
+            }
+
             this.get(`/user/profiles/${uuid}/names`)
                 .then((response) => {
                     const history: PlayerNameHistoryEntry[] = response.body;

@@ -44,7 +44,8 @@ export declare class Client extends BaseClient {
     getUuids(usernames: string[]): Promise<Map<string, PlayerNameData>>;
     /**
      * Gets a players name history by their UUID.
-     * @param uuid The UUID of the player to get the name history for.
+     * @param {string} uuid The UUID of the player to get the name history for.
+     * @returns {Promise<PlayerNameHistory>} The players name history
      */
     getNameHistory(uuid: string): Promise<PlayerNameHistory>;
 }
