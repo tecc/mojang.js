@@ -5,7 +5,6 @@ const path = require('path');
 const child = require('child_process');
 
 const distDir = path.resolve(pkgdir.sync(), 'dist');
-const scriptsDir = path.resolve(pkgdir.sync(), 'scripts');
 const template =
     'declare module \'{moduleName}\' {\n' +
     '{content}\n' +
