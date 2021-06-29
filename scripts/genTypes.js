@@ -11,6 +11,9 @@ const template =
     '}';
 const outputName = 'lib.d.ts';
 
+const pkg = require('../package.json');
+pkg.name = pkg.name.replaceAll(/@\w+\//g, '');
+
 console.log('Resolving files in directory', distDir);
 fs.readdir(distDir, (err, files) => {
     if (err) {
@@ -35,9 +38,9 @@ fs.readdir(distDir, (err, files) => {
     for (let partName in parts) {
         const part = parts[partName];
 
-        var moduleName = `mojang.js/${partName}`;
+        var moduleName = `${pkg.name}/${partName}`;
         if (partName === 'index') {
-            moduleName = 'mojang.js';
+            moduleName = `${pkg.name}`;
         }
         const filteredContent = part.content
             .replaceAll(/declare ?/g, '')

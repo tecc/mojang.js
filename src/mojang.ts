@@ -102,7 +102,13 @@ export class Client extends BaseClient {
 
             this.get(`/user/profiles/${uuid}/names`)
                 .then((response) => {
-                    const history: PlayerNameHistoryEntry[] = response.body;
+                    const history: PlayerNameHistoryEntry[] = response.body.map((improper: any) => {
+                        const entry: PlayerNameHistoryEntry = {
+                            name: improper.name,
+                            changedToAt: improper.changedToAt != undefined ? new Date(improper.changedToAt) : undefined
+                        };
+                        return entry;
+                    });
                     resolve({
                         uuid: Util.expandUuid(uuid),
                         current: history[history.length - 1],

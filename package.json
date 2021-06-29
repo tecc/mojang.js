@@ -1,5 +1,5 @@
 {
-  "name": "mojang.js",
+  "name": "@tecc/mojang.js",
   "version": "0.1.0-alpha",
   "description": "mojang.js is a simple wrapper for Mojangs APIs, written in TypeScript.",
   "main": "dist/index.js",
@@ -8,22 +8,26 @@
     "example": "./examples",
     "lib": "./dist"
   },
+  "private": false,
   "scripts": {
     "prepublish": "npm test",
+
     "install": "node scripts/symlinkDirs.js",
+
     "pretest": "npm run build",
+
     "test": "node scripts/test.js",
+
     "prebuild": "rm -rf dist/",
     "build": "tsc --build tsconfig.json",
     "postbuild": "npm run types && git add dist/",
+
     "types": "node scripts/genTypes.js",
+
     "predoc": "node scripts/predoc.js",
     "doc": "typedoc --options typedoc.json && git add docs/"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tecc/mojang.js.git"
-  },
+  "repository": "git+https://github.com/tecc/mojang.js.git",
   "keywords": [
     "mojang",
     "minecraft"
@@ -33,7 +37,7 @@
   "bugs": {
     "url": "https://github.com/tecc/mojang.js/issues"
   },
-  "homepage": "https://github.com/tecc/mojang.js#readme",
+  "homepage": "https://tecc.me/mojang.js",
   "devDependencies": {
     "@types/node": "^15.12.5",
     "@types/pkg-dir": "^2.0.1",
