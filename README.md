@@ -17,6 +17,6 @@ If you're using TypeScript, don't worry - `mojang.js` uses TypeScript too under 
 ## Usage
 
 All documentation is available at [the project page](https://tecc.me/mojang.js). 
-If you find that any documentation is missing, unclear, or incomplete [open an issue](https://github.com/tecc/mojang.js/issues) 
+If you find that any documentation is missing, unclear, or incomplete [open an issue over on GitHub](https://github.com/tecc/mojang.js/issues).
 
 For more detailed examples, please view the [examples](./examples).
