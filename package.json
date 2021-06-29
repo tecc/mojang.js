@@ -9,9 +9,13 @@
     "lib": "./dist"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "npm test",
+    "install": "node scripts/symlinkDirs.js",
+    "pretest": "npm run build",
+    "test": "node scripts/test.js",
+    "prebuild": "rm -rf dist/",
     "build": "tsc --build tsconfig.json",
-    "postbuild": "npm run types",
+    "postbuild": "npm run types && git add dist/",
     "types": "node scripts/genTypes.js"
   },
   "repository": {
@@ -42,6 +46,5 @@
   "dependencies": {
     "superagent": "^6.1.0",
     "uuid": "^8.3.2"
-  },
-  "type": "commonjs"
+  }
 }

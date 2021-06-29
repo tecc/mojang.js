@@ -1,10 +1,10 @@
 declare module 'mojang.js/BaseClient' {
-    import * as superagent from 'superagent';
+    import superagent from 'superagent';
     import type { NullValue } from 'mojang.js/util';
     export type QueryParams = {
         [key: string]: string | number | NullValue;
     };
-    export type HTTPMethod = 'GET' | 'PUT' | 'POST' | 'UPDATE' | 'DELETE' | 'PATCH' | 'HEAD';
+    export type HTTPMethod = 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH';
     export abstract class BaseClient {
         baseUrl: string;
         agent: superagent.SuperAgentStatic & superagent.Request;
@@ -21,7 +21,7 @@ declare module 'mojang.js/BaseClient' {
          * @param params The query parameters
          */
         url(path: string, params: QueryParams): string;
-        request(method: HTTPMethod, path: string, queryParams: QueryParams): superagent.SuperAgentRequest;
+        request(method: HTTPMethod, path: string, queryParams: QueryParams): superagent.Request;
         get(path: string, queryParams?: QueryParams): superagent.Request;
         post(path: string, queryParams?: QueryParams): superagent.Request;
     }
@@ -30,9 +30,7 @@ declare module 'mojang.js/BaseClient' {
 declare module 'mojang.js' {
     export * as Base from 'mojang.js/BaseClient';
     export * as Mojang from 'mojang.js/mojang';
-    export { MojangClient } from 'mojang.js/mojang';
     export * as Yggdrasil from 'mojang.js/yggdrasil';
-    export { YggdrasilClient } from 'mojang.js/yggdrasil';
     export * as Util from 'mojang.js/util';
     
 }
@@ -45,7 +43,7 @@ declare module 'mojang.js/mojang' {
     /**
      * Mojang API client wrapper.
      */
-    export class MojangClient extends BaseClient {
+    export class Client extends BaseClient {
         /**
          * Constructs a new Mojang API client.
          */
@@ -76,7 +74,9 @@ declare module 'mojang.js/util' {
     
 }
 declare module 'mojang.js/yggdrasil' {
-    export class YggdrasilClient {
+    import { BaseClient } from 'mojang.js/BaseClient';
+    export class YggdrasilClient extends BaseClient {
+        constructor();
     }
     
 }

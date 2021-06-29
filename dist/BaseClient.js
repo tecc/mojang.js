@@ -1,34 +1,21 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BaseClient = void 0;
-var superagent = __importStar(require("superagent"));
-var BaseClient = /** @class */ (function () {
+const superagent_1 = __importDefault(require("superagent"));
+class BaseClient {
     /**
      * Constructs a new API client.
      * @param baseUrl The base URL for requests made by this client.
      */
-    function BaseClient(baseUrl) {
+    constructor(baseUrl) {
         this.baseUrl = baseUrl;
-        this.agent = superagent.agent();
+        this.agent = superagent_1.default.agent();
+        if (this.agent == null) {
+            throw new Error('Agent is null!');
+        }
     }
     /**
      * Gets a URL based on the {@link BaseClient.baseUrl} and path specified.
@@ -37,27 +24,46 @@ var BaseClient = /** @class */ (function () {
      * @param path The path to append
      * @param params The query parameters
      */
-    BaseClient.prototype.url = function (path, params) {
-        var url = new URL(path, this.baseUrl);
-        for (var key in params) {
-            var value = params[key];
+    url(path, params) {
+        const url = new URL(path, this.baseUrl);
+        for (const key of Object.keys(params)) {
+            const value = params[key];
             if (value)
                 url.searchParams.append(key, value.toString());
         }
         return url.toString();
-    };
-    BaseClient.prototype.request = function (method, path, queryParams) {
-        return this.agent(method, this.url(path, queryParams));
-    };
-    BaseClient.prototype.get = function (path, queryParams) {
-        if (queryParams === void 0) { queryParams = {}; }
+    }
+    request(method, path, queryParams) {
+        const url = this.url(path, queryParams);
+        switch (method) {
+            case 'GET':
+                return this.agent.get(url);
+            case 'HEAD':
+                return this.agent.head(url);
+            case 'POST':
+                return this.agent.post(url);
+            case 'PUT':
+                return this.agent.put(url);
+            case 'DELETE':
+                return this.agent.delete(url);
+            case 'CONNECT':
+                return this.agent.connect(url);
+            case 'OPTIONS':
+                return this.agent.options(url);
+            case 'TRACE':
+                return this.agent.trace(url);
+            case 'PATCH':
+                return this.agent.patch(url);
+            default:
+                throw new Error(`Invalid HTTP method '${method}`);
+        }
+    }
+    get(path, queryParams = {}) {
         return this.request('GET', path, queryParams);
-    };
-    BaseClient.prototype.post = function (path, queryParams) {
-        if (queryParams === void 0) { queryParams = {}; }
-        return this.agent.post(this.url(path, queryParams));
-    };
-    return BaseClient;
-}());
+    }
+    post(path, queryParams = {}) {
+        return this.request('POST', path, queryParams);
+    }
+}
 exports.BaseClient = BaseClient;
-//# sourceMappingURL=BaseClient.js.map
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQmFzZUNsaWVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uL3NyYy9CYXNlQ2xpZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBLDREQUFvQztBQU1wQyxNQUFzQixVQUFVO0lBSTVCOzs7T0FHRztJQUNILFlBQVksT0FBZTtRQUN2QixJQUFJLENBQUMsT0FBTyxHQUFHLE9BQU8sQ0FBQztRQUN2QixJQUFJLENBQUMsS0FBSyxHQUFHLG9CQUFVLENBQUMsS0FBSyxFQUFFLENBQUM7UUFDaEMsSUFBSSxJQUFJLENBQUMsS0FBSyxJQUFJLElBQUksRUFBRTtZQUNwQixNQUFNLElBQUksS0FBSyxDQUFDLGdCQUFnQixDQUFDLENBQUM7U0FDckM7SUFDTCxDQUFDO0lBQ0Q7Ozs7OztPQU1HO0lBQ0gsR0FBRyxDQUFDLElBQVksRUFBRSxNQUFtQjtRQUNqQyxNQUFNLEdBQUcsR0FBRyxJQUFJLEdBQUcsQ0FBQyxJQUFJLEVBQUUsSUFBSSxDQUFDLE9BQU8sQ0FBQyxDQUFDO1FBQ3hDLEtBQUssTUFBTSxHQUFHLElBQUksTUFBTSxDQUFDLElBQUksQ0FBQyxNQUFNLENBQUMsRUFBRTtZQUNuQyxNQUFNLEtBQUssR0FBRyxNQUFNLENBQUMsR0FBRyxDQUFDLENBQUM7WUFDMUIsSUFBSSxLQUFLO2dCQUNMLEdBQUcsQ0FBQyxZQUFZLENBQUMsTUFBTSxDQUFDLEdBQUcsRUFBRSxLQUFLLENBQUMsUUFBUSxFQUFFLENBQUMsQ0FBQztTQUN0RDtRQUNELE9BQU8sR0FBRyxDQUFDLFFBQVEsRUFBRSxDQUFDO0lBQzFCLENBQUM7SUFFRCxPQUFPLENBQUMsTUFBa0IsRUFBRSxJQUFZLEVBQUUsV0FBd0I7UUFDOUQsTUFBTSxHQUFHLEdBQUcsSUFBSSxDQUFDLEdBQUcsQ0FBQyxJQUFJLEVBQUUsV0FBVyxDQUFDLENBQUM7UUFDeEMsUUFBUSxNQUFNLEVBQUU7WUFDaEIsS0FBSyxLQUFLO2dCQUNOLE9BQU8sSUFBSSxDQUFDLEtBQUssQ0FBQyxHQUFHLENBQUMsR0FBRyxDQUFDLENBQUM7WUFDL0IsS0FBSyxNQUFNO2dCQUNQLE9BQU8sSUFBSSxDQUFDLEtBQUssQ0FBQyxJQUFJLENBQUMsR0FBRyxDQUFDLENBQUM7WUFDaEMsS0FBSyxNQUFNO2dCQUNQLE9BQU8sSUFBSSxDQUFDLEtBQUssQ0FBQyxJQUFJLENBQUMsR0FBRyxDQUFDLENBQUM7WUFDaEMsS0FBSyxLQUFLO2dCQUNOLE9BQU8sSUFBSSxDQUFDLEtBQUssQ0FBQyxHQUFHLENBQUMsR0FBRyxDQUFDLENBQUM7WUFDL0IsS0FBSyxRQUFRO2dCQUNULE9BQU8sSUFBSSxDQUFDLEtBQUssQ0FBQyxNQUFNLENBQUMsR0FBRyxDQUFDLENBQUM7WUFDbEMsS0FBSyxTQUFTO2dCQUNWLE9BQU8sSUFBSSxDQUFDLEtBQUssQ0FBQyxPQUFPLENBQUMsR0FBRyxDQUFDLENBQUM7WUFDbkMsS0FBSyxTQUFTO2dCQUNWLE9BQU8sSUFBSSxDQUFDLEtBQUssQ0FBQyxPQUFPLENBQUMsR0FBRyxDQUFDLENBQUM7WUFDbkMsS0FBSyxPQUFPO2dCQUNSLE9BQU8sSUFBSSxDQUFDLEtBQUssQ0FBQyxLQUFLLENBQUMsR0FBRyxDQUFDLENBQUM7WUFDakMsS0FBSyxPQUFPO2dCQUNSLE9BQU8sSUFBSSxDQUFDLEtBQUssQ0FBQyxLQUFLLENBQUMsR0FBRyxDQUFDLENBQUM7WUFDakM7Z0JBQ0ksTUFBTSxJQUFJLEtBQUssQ0FBQyx3QkFBd0IsTUFBTSxFQUFFLENBQUMsQ0FBQztTQUNyRDtJQUNMLENBQUM7SUFDRCxHQUFHLENBQUMsSUFBWSxFQUFFLGNBQTJCLEVBQUU7UUFDM0MsT0FBTyxJQUFJLENBQUMsT0FBTyxDQUFDLEtBQUssRUFBRSxJQUFJLEVBQUUsV0FBVyxDQUFDLENBQUM7SUFDbEQsQ0FBQztJQUNELElBQUksQ0FBQyxJQUFZLEVBQUUsY0FBMkIsRUFBRTtRQUM1QyxPQUFPLElBQUksQ0FBQyxPQUFPLENBQUMsTUFBTSxFQUFFLElBQUksRUFBRSxXQUFXLENBQUMsQ0FBQztJQUNuRCxDQUFDO0NBQ0o7QUEvREQsZ0NBK0RDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHN1cGVyYWdlbnQgZnJvbSAnc3VwZXJhZ2VudCc7XG5pbXBvcnQgdHlwZSB7IE51bGxWYWx1ZSB9IGZyb20gJy4vdXRpbCc7XG5cbmV4cG9ydCB0eXBlIFF1ZXJ5UGFyYW1zID0ge1trZXk6IHN0cmluZ106IHN0cmluZyB8IG51bWJlciB8IE51bGxWYWx1ZX07XG5leHBvcnQgdHlwZSBIVFRQTWV0aG9kID0gJ0dFVCcgfCAnSEVBRCcgfCAnUE9TVCcgfCAnUFVUJyB8ICdERUxFVEUnIHwgJ0NPTk5FQ1QnIHwgJ09QVElPTlMnIHwgJ1RSQUNFJyB8ICdQQVRDSCdcblxuZXhwb3J0IGFic3RyYWN0IGNsYXNzIEJhc2VDbGllbnQge1xuICAgIGJhc2VVcmw6IHN0cmluZztcbiAgICBhZ2VudDogc3VwZXJhZ2VudC5TdXBlckFnZW50U3RhdGljICYgc3VwZXJhZ2VudC5SZXF1ZXN0XG5cbiAgICAvKipcbiAgICAgKiBDb25zdHJ1Y3RzIGEgbmV3IEFQSSBjbGllbnQuXG4gICAgICogQHBhcmFtIGJhc2VVcmwgVGhlIGJhc2UgVVJMIGZvciByZXF1ZXN0cyBtYWRlIGJ5IHRoaXMgY2xpZW50LlxuICAgICAqL1xuICAgIGNvbnN0cnVjdG9yKGJhc2VVcmw6IHN0cmluZykge1xuICAgICAgICB0aGlzLmJhc2VVcmwgPSBiYXNlVXJsO1xuICAgICAgICB0aGlzLmFnZW50ID0gc3VwZXJhZ2VudC5hZ2VudCgpO1xuICAgICAgICBpZiAodGhpcy5hZ2VudCA9PSBudWxsKSB7XG4gICAgICAgICAgICB0aHJvdyBuZXcgRXJyb3IoJ0FnZW50IGlzIG51bGwhJyk7XG4gICAgICAgIH1cbiAgICB9XG4gICAgLyoqXG4gICAgICogR2V0cyBhIFVSTCBiYXNlZCBvbiB0aGUge0BsaW5rIEJhc2VDbGllbnQuYmFzZVVybH0gYW5kIHBhdGggc3BlY2lmaWVkLlxuICAgICAqIEFjY2VwdHMgcXVlcnkgcGFyYW1ldGVycy5cbiAgICAgKiBcbiAgICAgKiBAcGFyYW0gcGF0aCBUaGUgcGF0aCB0byBhcHBlbmRcbiAgICAgKiBAcGFyYW0gcGFyYW1zIFRoZSBxdWVyeSBwYXJhbWV0ZXJzXG4gICAgICovXG4gICAgdXJsKHBhdGg6IHN0cmluZywgcGFyYW1zOiBRdWVyeVBhcmFtcyk6IHN0cmluZyB7XG4gICAgICAgIGNvbnN0IHVybCA9IG5ldyBVUkwocGF0aCwgdGhpcy5iYXNlVXJsKTtcbiAgICAgICAgZm9yIChjb25zdCBrZXkgb2YgT2JqZWN0LmtleXMocGFyYW1zKSkge1xuICAgICAgICAgICAgY29uc3QgdmFsdWUgPSBwYXJhbXNba2V5XTtcbiAgICAgICAgICAgIGlmICh2YWx1ZSlcbiAgICAgICAgICAgICAgICB1cmwuc2VhcmNoUGFyYW1zLmFwcGVuZChrZXksIHZhbHVlLnRvU3RyaW5nKCkpO1xuICAgICAgICB9XG4gICAgICAgIHJldHVybiB1cmwudG9TdHJpbmcoKTtcbiAgICB9XG5cbiAgICByZXF1ZXN0KG1ldGhvZDogSFRUUE1ldGhvZCwgcGF0aDogc3RyaW5nLCBxdWVyeVBhcmFtczogUXVlcnlQYXJhbXMpOiBzdXBlcmFnZW50LlJlcXVlc3Qge1xuICAgICAgICBjb25zdCB1cmwgPSB0aGlzLnVybChwYXRoLCBxdWVyeVBhcmFtcyk7XG4gICAgICAgIHN3aXRjaCAobWV0aG9kKSB7XG4gICAgICAgIGNhc2UgJ0dFVCc6XG4gICAgICAgICAgICByZXR1cm4gdGhpcy5hZ2VudC5nZXQodXJsKTtcbiAgICAgICAgY2FzZSAnSEVBRCc6XG4gICAgICAgICAgICByZXR1cm4gdGhpcy5hZ2VudC5oZWFkKHVybCk7XG4gICAgICAgIGNhc2UgJ1BPU1QnOlxuICAgICAgICAgICAgcmV0dXJuIHRoaXMuYWdlbnQucG9zdCh1cmwpO1xuICAgICAgICBjYXNlICdQVVQnOlxuICAgICAgICAgICAgcmV0dXJuIHRoaXMuYWdlbnQucHV0KHVybCk7XG4gICAgICAgIGNhc2UgJ0RFTEVURSc6XG4gICAgICAgICAgICByZXR1cm4gdGhpcy5hZ2VudC5kZWxldGUodXJsKTtcbiAgICAgICAgY2FzZSAnQ09OTkVDVCc6XG4gICAgICAgICAgICByZXR1cm4gdGhpcy5hZ2VudC5jb25uZWN0KHVybCk7XG4gICAgICAgIGNhc2UgJ09QVElPTlMnOlxuICAgICAgICAgICAgcmV0dXJuIHRoaXMuYWdlbnQub3B0aW9ucyh1cmwpO1xuICAgICAgICBjYXNlICdUUkFDRSc6XG4gICAgICAgICAgICByZXR1cm4gdGhpcy5hZ2VudC50cmFjZSh1cmwpO1xuICAgICAgICBjYXNlICdQQVRDSCc6XG4gICAgICAgICAgICByZXR1cm4gdGhpcy5hZ2VudC5wYXRjaCh1cmwpO1xuICAgICAgICBkZWZhdWx0OlxuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBJbnZhbGlkIEhUVFAgbWV0aG9kICcke21ldGhvZH1gKTtcbiAgICAgICAgfVxuICAgIH1cbiAgICBnZXQocGF0aDogc3RyaW5nLCBxdWVyeVBhcmFtczogUXVlcnlQYXJhbXMgPSB7fSk6IHN1cGVyYWdlbnQuUmVxdWVzdCB7XG4gICAgICAgIHJldHVybiB0aGlzLnJlcXVlc3QoJ0dFVCcsIHBhdGgsIHF1ZXJ5UGFyYW1zKTtcbiAgICB9XG4gICAgcG9zdChwYXRoOiBzdHJpbmcsIHF1ZXJ5UGFyYW1zOiBRdWVyeVBhcmFtcyA9IHt9KTogc3VwZXJhZ2VudC5SZXF1ZXN0IHtcbiAgICAgICAgcmV0dXJuIHRoaXMucmVxdWVzdCgnUE9TVCcsIHBhdGgsIHF1ZXJ5UGFyYW1zKTtcbiAgICB9XG59Il19

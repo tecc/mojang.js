@@ -6,7 +6,7 @@ export function validate(uuid: string): boolean {
     return UUID.validate(uuid) || UUID.validate(expandUuid(uuid));
 }
 export function cleanUuid(uuid: string): string {
-    return uuid.replace('-', '');
+    return uuid.replace(/-/g, '');
 }
 export function expandUuid(uuid: string): string {
     let result = '';

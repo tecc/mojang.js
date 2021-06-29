@@ -19,13 +19,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Util = exports.YggdrasilClient = exports.Yggdrasil = exports.MojangClient = exports.Mojang = exports.Base = void 0;
+exports.Util = exports.Yggdrasil = exports.Mojang = exports.Base = void 0;
 exports.Base = __importStar(require("./BaseClient"));
 exports.Mojang = __importStar(require("./mojang"));
-var mojang_1 = require("./mojang");
-Object.defineProperty(exports, "MojangClient", { enumerable: true, get: function () { return mojang_1.MojangClient; } });
 exports.Yggdrasil = __importStar(require("./yggdrasil"));
-var yggdrasil_1 = require("./yggdrasil");
-Object.defineProperty(exports, "YggdrasilClient", { enumerable: true, get: function () { return yggdrasil_1.YggdrasilClient; } });
 exports.Util = __importStar(require("./util"));
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLHFEQUFxQztBQUNyQyxtREFBbUM7QUFDbkMseURBQXlDO0FBQ3pDLCtDQUErQiIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCAqIGFzIEJhc2UgZnJvbSAnLi9CYXNlQ2xpZW50JztcbmV4cG9ydCAqIGFzIE1vamFuZyBmcm9tICcuL21vamFuZyc7XG5leHBvcnQgKiBhcyBZZ2dkcmFzaWwgZnJvbSAnLi95Z2dkcmFzaWwnO1xuZXhwb3J0ICogYXMgVXRpbCBmcm9tICcuL3V0aWwnOyJdfQ==

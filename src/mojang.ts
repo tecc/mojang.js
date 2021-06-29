@@ -1,5 +1,6 @@
 import { BaseClient } from './BaseClient';
 import type { NullValue } from './util';
+import * as Util from './util';
 
 export type PlayerNameData = {
     name: string,
@@ -9,7 +10,7 @@ export type PlayerNameData = {
 /**
  * Mojang API client wrapper.
  */
-export class MojangClient extends BaseClient {
+export class Client extends BaseClient {
     /**
      * Constructs a new Mojang API client.
      */
@@ -26,7 +27,7 @@ export class MojangClient extends BaseClient {
      * @param at When this username should've been used for the UUID (please clarify)
      * @returns The player name data
      */
-    async getUuid(username: string, at?: Date): Promise<PlayerNameData> {
+    getUuid(username: string, at?: Date): Promise<PlayerNameData> {
         return new Promise<PlayerNameData>((resolve, reject) => {
             let timestamp: number | NullValue = null;
             if (at) {
@@ -35,7 +36,9 @@ export class MojangClient extends BaseClient {
 
             this.get('/users/profiles/minecraft/' + username, { at: timestamp })
                 .then((response) => {
-                    resolve(response.body);
+                    const data: PlayerNameData = response.body;
+                    data.id = Util.expandUuid(data.id);
+                    resolve(data);
                 })
                 .catch(reject);
         });
@@ -46,7 +49,7 @@ export class MojangClient extends BaseClient {
      * @param usernames The usernames to get their corresponding UUIDs for.
      * @returns A map of the players' usernames to their data object. 
      */
-    async getUuids(usernames: string[]): Promise<Map<string, PlayerNameData>> {
+    getUuids(usernames: string[]): Promise<Map<string, PlayerNameData>> {
         return new Promise<Map<string, PlayerNameData>>((resolve, reject) => {
             if (usernames.length > 10) {
                 reject('A maximum of 10 usernames per request is enforced by Mojang.');
@@ -58,7 +61,9 @@ export class MojangClient extends BaseClient {
                     const entries = response.body as PlayerNameData[];
                     const map = new Map<string, PlayerNameData>();
                     for (let i = 0; i < usernames.length; i++) {
-                        map.set(usernames[i], entries[i]);
+                        const data = entries[i];
+                        data.id = Util.expandUuid(data.id);
+                        map.set(usernames[i], data);
                     }
                     resolve(map);
                 })
@@ -66,5 +71,3 @@ export class MojangClient extends BaseClient {
         });
     }
 }
-
-module.exports = MojangClient;

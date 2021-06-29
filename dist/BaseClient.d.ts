@@ -1,9 +1,9 @@
-import * as superagent from 'superagent';
+import superagent from 'superagent';
 import type { NullValue } from './util';
 export declare type QueryParams = {
     [key: string]: string | number | NullValue;
 };
-export declare type HTTPMethod = 'GET' | 'PUT' | 'POST' | 'UPDATE' | 'DELETE' | 'PATCH' | 'HEAD';
+export declare type HTTPMethod = 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH';
 export declare abstract class BaseClient {
     baseUrl: string;
     agent: superagent.SuperAgentStatic & superagent.Request;
@@ -20,7 +20,7 @@ export declare abstract class BaseClient {
      * @param params The query parameters
      */
     url(path: string, params: QueryParams): string;
-    request(method: HTTPMethod, path: string, queryParams: QueryParams): superagent.SuperAgentRequest;
+    request(method: HTTPMethod, path: string, queryParams: QueryParams): superagent.Request;
     get(path: string, queryParams?: QueryParams): superagent.Request;
     post(path: string, queryParams?: QueryParams): superagent.Request;
 }

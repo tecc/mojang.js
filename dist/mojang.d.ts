@@ -6,7 +6,7 @@ export declare type PlayerNameData = {
 /**
  * Mojang API client wrapper.
  */
-export declare class MojangClient extends BaseClient {
+export declare class Client extends BaseClient {
     /**
      * Constructs a new Mojang API client.
      */
