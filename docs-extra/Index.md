@@ -10,7 +10,7 @@
 It is built on top of the [`superagent`](https://npmjs.com/package/superagent) package.
 
 **mojang.js** is licensed under the MIT License.
-View the [license file](./LICENSE.txt) for the full license.
+View the [license file]{@page License} for the full license.
 
 ## Installation
 
@@ -23,4 +23,4 @@ If you're using TypeScript, don't worry - `mojang.js` uses TypeScript too under 
 All documentation is available at [the project page](https://tecc.me/mojang.js). 
 If you find that any documentation is missing, unclear, or incomplete, [open an issue over on GitHub](https://github.com/tecc/mojang.js/issues).
 
-For more detailed examples, please view the [examples](./examples).
+For more detailed examples, please view the [examples]{@page List of examples}.

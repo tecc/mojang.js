@@ -16,7 +16,9 @@
     "prebuild": "rm -rf dist/",
     "build": "tsc --build tsconfig.json",
     "postbuild": "npm run types && git add dist/",
-    "types": "node scripts/genTypes.js"
+    "types": "node scripts/genTypes.js",
+    "predoc": "node scripts/predoc.js",
+    "doc": "typedoc --options typedoc.json && git add docs/"
   },
   "repository": {
     "type": "git",
@@ -41,6 +43,8 @@
     "@typescript-eslint/parser": "^4.28.0",
     "eslint": "^7.29.0",
     "pkg-dir": "^5.0.0",
+    "typedoc": "^0.21.2",
+    "typedoc-plugin-pages-fork": "^0.0.1",
     "typescript": "^4.3.4"
   },
   "dependencies": {

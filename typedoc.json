@@ -1,0 +1,49 @@
+{
+    "out": "./docs/",
+    "readme": "./docs-extra/Index.md",
+    "tsconfig": "./tsconfig.json",
+    "entryPoints": [
+        "src/index.ts"
+    ],
+    "hideGenerator": true,
+    "theme": "pages-plugin",
+    "includes": [
+        "./"
+    ],
+    "pages": {
+        "reflectionNavigationTitle": "Library",
+        "groups": [
+            {
+                "title": "About",
+                "output": "about",
+                "pages": [
+                    {
+                        "title": "License",
+                        "source": "./docs-extra/License.md",
+                        "output": "license.html"
+                    }
+                ]
+            },
+            {
+                "title": "Examples",
+                "output": "examples",
+                "source": "./docs-extra/examples",
+                "pages": [
+                    {
+                        "title": "List of examples",
+                        "source": "Index.md",
+                        "output": "index.html"
+                    },
+                    {
+                        "title": "Getting player UUIDs",
+                        "source": "GetUuids.md"
+                    },
+                    {
+                        "title": "Getting a players name history",
+                        "source": "GetNameHistory.md"
+                    }
+                ]
+            }
+        ]
+    }
+}
