@@ -1,6 +1,12 @@
 import * as UUID from 'uuid';
 
 export type NullValue = undefined | null;
+export type PackageDetails = {
+    version: string
+}
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+export const packageDetails: PackageDetails = require('../package.json');
 
 export function validate(uuid: string): boolean {
     return UUID.validate(uuid) || UUID.validate(expandUuid(uuid));

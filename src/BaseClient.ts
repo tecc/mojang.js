@@ -1,4 +1,5 @@
 import superagent from 'superagent';
+import * as Util from './util';
 import type { NullValue } from './util';
 
 export type QueryParams = {[key: string]: string | number | NullValue};
@@ -15,9 +16,6 @@ export abstract class BaseClient {
     constructor(baseUrl: string) {
         this.baseUrl = baseUrl;
         this.agent = superagent.agent();
-        if (this.agent == null) {
-            throw new Error('Agent is null!');
-        }
     }
     /**
      * Gets a URL based on the {@link BaseClient.baseUrl} and path specified.
@@ -38,28 +36,33 @@ export abstract class BaseClient {
 
     request(method: HTTPMethod, path: string, queryParams: QueryParams): superagent.Request {
         const url = this.url(path, queryParams);
-        switch (method) {
-        case 'GET':
-            return this.agent.get(url);
-        case 'HEAD':
-            return this.agent.head(url);
-        case 'POST':
-            return this.agent.post(url);
-        case 'PUT':
-            return this.agent.put(url);
-        case 'DELETE':
-            return this.agent.delete(url);
-        case 'CONNECT':
-            return this.agent.connect(url);
-        case 'OPTIONS':
-            return this.agent.options(url);
-        case 'TRACE':
-            return this.agent.trace(url);
-        case 'PATCH':
-            return this.agent.patch(url);
-        default:
-            throw new Error(`Invalid HTTP method '${method}`);
-        }
+        const req = () => {
+            switch (method) {
+            case 'GET':
+                return this.agent.get(url);
+            case 'HEAD':
+                return this.agent.head(url);
+            case 'POST':
+                return this.agent.post(url);
+            case 'PUT':
+                return this.agent.put(url);
+            case 'DELETE':
+                return this.agent.delete(url);
+            case 'CONNECT':
+                return this.agent.connect(url);
+            case 'OPTIONS':
+                return this.agent.options(url);
+            case 'TRACE':
+                return this.agent.trace(url);
+            case 'PATCH':
+                return this.agent.patch(url);
+            default:
+                throw new Error(`Invalid HTTP method '${method}`);
+            }
+        };
+
+        return req()
+            .set('User-Agent', `Mojang.JS/${Util.packageDetails.version}`);
     }
     get(path: string, queryParams: QueryParams = {}): superagent.Request {
         return this.request('GET', path, queryParams);

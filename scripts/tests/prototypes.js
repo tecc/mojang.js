@@ -9,9 +9,14 @@ module.exports = async function () {
     function noneIsUndefined(name, value, depth) {
         isUndefined(name, value);
         console.debug(`${name} is not undefined`);
-        for (let key of Object.keys(value)) {
-            if (depth - 1 !== 0) {
-                noneIsUndefined(`${name}.${key}`, value[key], depth - 1);
+        if (depth - 1 <= 0) return;
+        const keys = Object.keys(value);
+        if (keys) {
+            for (let key of keys) {
+                const prop = value[key];
+                if (typeof(prop) == 'object') {
+                    noneIsUndefined(`${name}.${key}`, prop, depth - 1);
+                }
             }
         }
     }

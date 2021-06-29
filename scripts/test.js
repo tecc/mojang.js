@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const tests = ['lint', 'prototypes', 'getUuid'];
+const tests = ['lint', 'prototypes', 'getUuid', 'getNameHistory'];
 
 let successfulTests = 0;
 
@@ -28,7 +28,7 @@ runTests().then(() => {
     const coverage = success * 100;
 
     console.log('Testing complete');
-    console.log(`Successful: ${successfulTests}, unsuccessful: ${unsuccessful}, coverage: ${coverage.toFixed(3)}%`);
+    console.log(`Successful: ${successfulTests}, unsuccessful: ${unsuccessful}, coverage: ${coverage.toFixed(2)}%`);
 
     if (success !== 1) {
         console.error('Tests failed, exiting');

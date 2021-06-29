@@ -12,5 +12,5 @@ module.exports = async function () {
     const players = ['Notch', 'jeb_', 'Technotype'];
     console.log(`Getting UUIDs for multiple players: ${players.join(', ')}`);
     const map = await mojang.getUuids(players);
-    console.log(map.values());
+    console.log('Received', map.values());
 };
