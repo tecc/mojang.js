@@ -1,6 +1,6 @@
 {
   "name": "@tecc/mojang.js",
-  "version": "0.1.2-alpha",
+  "version": "0.2.0-alpha",
   "description": "mojang.js is a simple wrapper for Mojangs APIs, written in TypeScript.",
   "main": "dist/index.js",
   "types": "dist/lib.d.ts",
@@ -34,6 +34,7 @@
   },
   "homepage": "https://tecc.me/mojang.js",
   "devDependencies": {
+    "@types/base-64": "^1.0.0",
     "@types/node": "^15.12.5",
     "@types/pkg-dir": "^2.0.1",
     "@types/superagent": "^4.1.11",
@@ -42,7 +43,6 @@
     "@typescript-eslint/parser": "^4.28.0",
     "eslint": "^7.29.0",
     "typedoc": "^0.21.2",
-    "@types/base-64": "^1.0.0",
     "typedoc-plugin-pages-fork": "^0.0.1"
   },
   "dependencies": {

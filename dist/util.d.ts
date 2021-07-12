@@ -7,4 +7,5 @@ export declare function isUuid(uuid: string): boolean;
 export declare function cleanUuid(uuid: string): string;
 export declare function expandUuid(uuid: string): string;
 export declare function base64Decode(data: string): string;
-export declare function base64encode(data: any): string;
+export declare function base64Encode(data: any): string;
+export declare function warn(...msg: any): void;

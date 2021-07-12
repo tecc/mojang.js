@@ -57,10 +57,10 @@
 					<a href="../modules.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/base.html">Base</a>
+					<a href="../modules/Base.html">Base</a>
 				</li>
 				<li>
-					<a href="base.baseclient.html">BaseClient</a>
+					<a href="Base.BaseClient.html">BaseClient</a>
 				</li>
 			</ul>
 			<h1>Class BaseClient</h1>
@@ -77,10 +77,10 @@
 						<span class="target">BaseClient</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="mojang.client.html" class="tsd-signature-type">Client</a>
+								<a href="Mojang.Client.html" class="tsd-signature-type">Client</a>
 							</li>
 							<li>
-								<a href="yggdrasil.yggdrasilclient.html" class="tsd-signature-type">YggdrasilClient</a>
+								<a href="Yggdrasil.Client.html" class="tsd-signature-type">Client</a>
 							</li>
 						</ul>
 					</li>
@@ -93,23 +93,24 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="base.baseclient.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="Base.BaseClient.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="base.baseclient.html#agent" class="tsd-kind-icon">agent</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="base.baseclient.html#baseurl" class="tsd-kind-icon">base<wbr>Url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="Base.BaseClient.html#agent" class="tsd-kind-icon">agent</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="Base.BaseClient.html#baseUrl" class="tsd-kind-icon">base<wbr>Url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="Base.BaseClient.html#cache" class="tsd-kind-icon">cache</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="base.baseclient.html#get" class="tsd-kind-icon">get</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="base.baseclient.html#post" class="tsd-kind-icon">post</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="base.baseclient.html#request" class="tsd-kind-icon">request</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="base.baseclient.html#url" class="tsd-kind-icon">url</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Base.BaseClient.html#get" class="tsd-kind-icon">get</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Base.BaseClient.html#post" class="tsd-kind-icon">post</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Base.BaseClient.html#request" class="tsd-kind-icon">request</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Base.BaseClient.html#url" class="tsd-kind-icon">url</a></li>
 							</ul>
 						</section>
 					</div>
@@ -121,13 +122,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Base<wbr>Client<span class="tsd-signature-symbol">(</span>baseUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="base.baseclient.html" class="tsd-signature-type">BaseClient</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Base<wbr>Client<span class="tsd-signature-symbol">(</span>baseUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, useCache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Base.BaseClient.html" class="tsd-signature-type">BaseClient</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/51b5868/src/BaseClient.ts#L10">BaseClient.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/5001b3d/src/BaseClient.ts#L34">BaseClient.ts:34</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -140,11 +141,21 @@
 								<li>
 									<h5>baseUrl: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The base URL for requests made by this client.</p>
+										<div class="lead">
+											<p>The base URL for requests made by this client.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>useCache: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Whether or not to use caching</p>
+										</div>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="base.baseclient.html" class="tsd-signature-type">BaseClient</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="Base.BaseClient.html" class="tsd-signature-type">BaseClient</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -157,19 +168,45 @@
 					<div class="tsd-signature tsd-kind-icon">agent<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">SuperAgentStatic</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Request</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/51b5868/src/BaseClient.ts#L10">BaseClient.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/5001b3d/src/BaseClient.ts#L22">BaseClient.ts:22</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The underlying agent, from Superagent.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="baseurl" class="tsd-anchor"></a>
+					<a name="baseUrl" class="tsd-anchor"></a>
 					<h3>base<wbr>Url</h3>
 					<div class="tsd-signature tsd-kind-icon">base<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/51b5868/src/BaseClient.ts#L9">BaseClient.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/5001b3d/src/BaseClient.ts#L18">BaseClient.ts:18</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The base URL of where the client makes requests.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="cache" class="tsd-anchor"></a>
+					<h3>cache</h3>
+					<div class="tsd-signature tsd-kind-icon">cache<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/5001b3d/src/BaseClient.ts#L27">BaseClient.ts:27</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The cache module.
+							Any type, since the package used for caching doesn&#39;t provide</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -178,13 +215,13 @@
 					<a name="get" class="tsd-anchor"></a>
 					<h3>get</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, queryParams<span class="tsd-signature-symbol">?: </span><a href="../modules/base.html#queryparams" class="tsd-signature-type">QueryParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Request</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, queryParams<span class="tsd-signature-symbol">?: </span><a href="../modules/Base.html#QueryParams" class="tsd-signature-type">QueryParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Request</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/51b5868/src/BaseClient.ts#L67">BaseClient.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/5001b3d/src/BaseClient.ts#L92">BaseClient.ts:92</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -193,7 +230,7 @@
 									<h5>path: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>queryParams: <a href="../modules/base.html#queryparams" class="tsd-signature-type">QueryParams</a><span class="tsd-signature-symbol"> = {}</span></h5>
+									<h5>queryParams: <a href="../modules/Base.html#QueryParams" class="tsd-signature-type">QueryParams</a><span class="tsd-signature-symbol"> = {}</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Request</span></h4>
@@ -204,13 +241,13 @@
 					<a name="post" class="tsd-anchor"></a>
 					<h3>post</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">post<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, queryParams<span class="tsd-signature-symbol">?: </span><a href="../modules/base.html#queryparams" class="tsd-signature-type">QueryParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Request</span></li>
+						<li class="tsd-signature tsd-kind-icon">post<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, queryParams<span class="tsd-signature-symbol">?: </span><a href="../modules/Base.html#QueryParams" class="tsd-signature-type">QueryParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Request</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/51b5868/src/BaseClient.ts#L70">BaseClient.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/5001b3d/src/BaseClient.ts#L95">BaseClient.ts:95</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -219,7 +256,7 @@
 									<h5>path: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>queryParams: <a href="../modules/base.html#queryparams" class="tsd-signature-type">QueryParams</a><span class="tsd-signature-symbol"> = {}</span></h5>
+									<h5>queryParams: <a href="../modules/Base.html#QueryParams" class="tsd-signature-type">QueryParams</a><span class="tsd-signature-symbol"> = {}</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Request</span></h4>
@@ -230,25 +267,25 @@
 					<a name="request" class="tsd-anchor"></a>
 					<h3>request</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">request<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><a href="../modules/base.html#httpmethod" class="tsd-signature-type">HTTPMethod</a>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, queryParams<span class="tsd-signature-symbol">: </span><a href="../modules/base.html#queryparams" class="tsd-signature-type">QueryParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Request</span></li>
+						<li class="tsd-signature tsd-kind-icon">request<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><a href="../modules/Base.html#HTTPMethod" class="tsd-signature-type">HTTPMethod</a>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, queryParams<span class="tsd-signature-symbol">: </span><a href="../modules/Base.html#QueryParams" class="tsd-signature-type">QueryParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Request</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/51b5868/src/BaseClient.ts#L37">BaseClient.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/5001b3d/src/BaseClient.ts#L62">BaseClient.ts:62</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>method: <a href="../modules/base.html#httpmethod" class="tsd-signature-type">HTTPMethod</a></h5>
+									<h5>method: <a href="../modules/Base.html#HTTPMethod" class="tsd-signature-type">HTTPMethod</a></h5>
 								</li>
 								<li>
 									<h5>path: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>queryParams: <a href="../modules/base.html#queryparams" class="tsd-signature-type">QueryParams</a></h5>
+									<h5>queryParams: <a href="../modules/Base.html#QueryParams" class="tsd-signature-type">QueryParams</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Request</span></h4>
@@ -259,18 +296,18 @@
 					<a name="url" class="tsd-anchor"></a>
 					<h3>url</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">: </span><a href="../modules/base.html#queryparams" class="tsd-signature-type">QueryParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">: </span><a href="../modules/Base.html#QueryParams" class="tsd-signature-type">QueryParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/51b5868/src/BaseClient.ts#L27">BaseClient.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/5001b3d/src/BaseClient.ts#L52">BaseClient.ts:52</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Gets a URL based on the <a href="base.baseclient.html#baseurl">BaseClient.baseUrl</a> and path specified.
+									<p>Gets a URL based on the <a href="Base.BaseClient.html#baseUrl">BaseClient.baseUrl</a> and path specified.
 									Accepts query parameters.</p>
 								</div>
 							</div>
@@ -283,7 +320,7 @@
 									</div>
 								</li>
 								<li>
-									<h5>params: <a href="../modules/base.html#queryparams" class="tsd-signature-type">QueryParams</a></h5>
+									<h5>params: <a href="../modules/Base.html#QueryParams" class="tsd-signature-type">QueryParams</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The query parameters</p>
 									</div>
@@ -323,16 +360,16 @@
 						<a href="../modules.html">Exports</a>
 					</li>
 					<li class="current tsd-kind-namespace">
-						<a href="../modules/base.html">Base</a>
+						<a href="../modules/Base.html">Base</a>
 					</li>
 					<li class=" tsd-kind-namespace">
-						<a href="../modules/mojang.html">Mojang</a>
+						<a href="../modules/Mojang.html">Mojang</a>
 					</li>
 					<li class=" tsd-kind-namespace">
-						<a href="../modules/util.html">Util</a>
+						<a href="../modules/Util.html">Util</a>
 					</li>
 					<li class=" tsd-kind-namespace">
-						<a href="../modules/yggdrasil.html">Yggdrasil</a>
+						<a href="../modules/Yggdrasil.html">Yggdrasil</a>
 					</li>
 				</ul>
 			</nav>
@@ -341,38 +378,41 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-namespace">
-						<a href="base.baseclient.html" class="tsd-kind-icon">Base<wbr>Client</a>
+						<a href="Base.BaseClient.html" class="tsd-kind-icon">Base<wbr>Client</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="base.baseclient.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="Base.BaseClient.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="base.baseclient.html#agent" class="tsd-kind-icon">agent</a>
+								<a href="Base.BaseClient.html#agent" class="tsd-kind-icon">agent</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="base.baseclient.html#baseurl" class="tsd-kind-icon">base<wbr>Url</a>
+								<a href="Base.BaseClient.html#baseUrl" class="tsd-kind-icon">base<wbr>Url</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="Base.BaseClient.html#cache" class="tsd-kind-icon">cache</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="base.baseclient.html#get" class="tsd-kind-icon">get</a>
+								<a href="Base.BaseClient.html#get" class="tsd-kind-icon">get</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="base.baseclient.html#post" class="tsd-kind-icon">post</a>
+								<a href="Base.BaseClient.html#post" class="tsd-kind-icon">post</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="base.baseclient.html#request" class="tsd-kind-icon">request</a>
+								<a href="Base.BaseClient.html#request" class="tsd-kind-icon">request</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="base.baseclient.html#url" class="tsd-kind-icon">url</a>
+								<a href="Base.BaseClient.html#url" class="tsd-kind-icon">url</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
-						<a href="../modules/base.html#httpmethod" class="tsd-kind-icon">HTTPMethod</a>
+						<a href="../modules/Base.html#HTTPMethod" class="tsd-kind-icon">HTTPMethod</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
-						<a href="../modules/base.html#queryparams" class="tsd-kind-icon">Query<wbr>Params</a>
+						<a href="../modules/Base.html#QueryParams" class="tsd-kind-icon">Query<wbr>Params</a>
 					</li>
 				</ul>
 			</nav>

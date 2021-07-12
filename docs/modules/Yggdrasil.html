@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Base | @tecc/mojang.js</title>
+	<title>Yggdrasil | @tecc/mojang.js</title>
 	<meta name="description" content="Documentation for @tecc/mojang.js">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules.html">Globals</a>
 				</li>
 				<li>
-					<a href="base.html">Base</a>
+					<a href="Yggdrasil.html">Yggdrasil</a>
 				</li>
 			</ul>
-			<h1>Namespace Base</h1>
+			<h1>Namespace Yggdrasil</h1>
 		</div>
 	</div>
 </header>
@@ -74,48 +74,74 @@
 						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-namespace"><a href="../classes/base.baseclient.html" class="tsd-kind-icon">Base<wbr>Client</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-namespace"><a href="../classes/Yggdrasil.Client.html" class="tsd-kind-icon">Client</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
-							<h3>Type aliases</h3>
+							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="base.html#httpmethod" class="tsd-kind-icon">HTTPMethod</a></li>
-								<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="base.html#queryparams" class="tsd-kind-icon">Query<wbr>Params</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-namespace"><a href="../interfaces/Yggdrasil.YggdrasilError.html" class="tsd-kind-icon">Yggdrasil<wbr>Error</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="Yggdrasil.html#generateClientToken" class="tsd-kind-icon">generate<wbr>Client<wbr>Token</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Type aliases</h2>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace">
-					<a name="httpmethod" class="tsd-anchor"></a>
-					<h3>HTTPMethod</h3>
-					<div class="tsd-signature tsd-kind-icon">HTTPMethod<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;GET&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;HEAD&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;POST&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;PUT&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;DELETE&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;CONNECT&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;OPTIONS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;TRACE&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;PATCH&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/51b5868/src/BaseClient.ts#L6">BaseClient.ts:6</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace">
-					<a name="queryparams" class="tsd-anchor"></a>
-					<h3>Query<wbr>Params</h3>
-					<div class="tsd-signature tsd-kind-icon">Query<wbr>Params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/51b5868/src/BaseClient.ts#L5">BaseClient.ts:5</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-index-signature">
-								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">NullValue</span></h5>
-							</li>
-						</ul>
-					</div>
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-namespace">
+					<a name="generateClientToken" class="tsd-anchor"></a>
+					<h3>generate<wbr>Client<wbr>Token</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-namespace">
+						<li class="tsd-signature tsd-kind-icon">generate<wbr>Client<wbr>Token<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, version<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, time<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, number<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/5001b3d/src/yggdrasil.ts#L44">yggdrasil.ts:44</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generates a client token. A client token has to be virtually impossible to be the same for any 2 things.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &#x27;mojang.js&#x27;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The client name.</p>
+									</div>
+								</li>
+								<li>
+									<h5>version: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = ...</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The client version.</p>
+									</div>
+								</li>
+								<li>
+									<h5>time: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = ...</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The time.</p>
+									</div>
+								</li>
+								<li>
+									<h5>number: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = ...</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Random number.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -146,30 +172,30 @@
 					<li class=" ">
 						<a href="../modules.html">Exports</a>
 					</li>
+					<li class=" tsd-kind-namespace">
+						<a href="Base.html">Base</a>
+					</li>
+					<li class=" tsd-kind-namespace">
+						<a href="Mojang.html">Mojang</a>
+					</li>
+					<li class=" tsd-kind-namespace">
+						<a href="Util.html">Util</a>
+					</li>
 					<li class="current tsd-kind-namespace">
-						<a href="base.html">Base</a>
-					</li>
-					<li class=" tsd-kind-namespace">
-						<a href="mojang.html">Mojang</a>
-					</li>
-					<li class=" tsd-kind-namespace">
-						<a href="util.html">Util</a>
-					</li>
-					<li class=" tsd-kind-namespace">
-						<a href="yggdrasil.html">Yggdrasil</a>
+						<a href="Yggdrasil.html">Yggdrasil</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class tsd-parent-kind-namespace">
-						<a href="../classes/base.baseclient.html" class="tsd-kind-icon">Base<wbr>Client</a>
+						<a href="../classes/Yggdrasil.Client.html" class="tsd-kind-icon">Client</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
-						<a href="base.html#httpmethod" class="tsd-kind-icon">HTTPMethod</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
+						<a href="../interfaces/Yggdrasil.YggdrasilError.html" class="tsd-kind-icon">Yggdrasil<wbr>Error</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
-						<a href="base.html#queryparams" class="tsd-kind-icon">Query<wbr>Params</a>
+					<li class=" tsd-kind-function tsd-parent-kind-namespace">
+						<a href="Yggdrasil.html#generateClientToken" class="tsd-kind-icon">generate<wbr>Client<wbr>Token</a>
 					</li>
 				</ul>
 			</nav>

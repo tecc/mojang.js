@@ -57,7 +57,7 @@
 					<a href="../modules.html">Globals</a>
 				</li>
 				<li>
-					<a href="util.html">Util</a>
+					<a href="Util.html">Util</a>
 				</li>
 			</ul>
 			<h1>Namespace Util</h1>
@@ -74,22 +74,25 @@
 						<section class="tsd-index-section ">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="util.html#nullvalue" class="tsd-kind-icon">Null<wbr>Value</a></li>
-								<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="util.html#packagedetails" class="tsd-kind-icon">Package<wbr>Details</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="Util.html#NullValue" class="tsd-kind-icon">Null<wbr>Value</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="Util.html#PackageDetails" class="tsd-kind-icon">Package<wbr>Details</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Variables</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable tsd-parent-kind-namespace"><a href="util.html#packagedetails-1" class="tsd-kind-icon">package<wbr>Details</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-namespace"><a href="Util.html#packageDetails" class="tsd-kind-icon">package<wbr>Details</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="util.html#cleanuuid" class="tsd-kind-icon">clean<wbr>Uuid</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="util.html#expanduuid" class="tsd-kind-icon">expand<wbr>Uuid</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="util.html#isuuid" class="tsd-kind-icon">is<wbr>Uuid</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="Util.html#base64Decode" class="tsd-kind-icon">base64<wbr>Decode</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="Util.html#base64Encode" class="tsd-kind-icon">base64<wbr>Encode</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="Util.html#cleanUuid" class="tsd-kind-icon">clean<wbr>Uuid</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="Util.html#expandUuid" class="tsd-kind-icon">expand<wbr>Uuid</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="Util.html#isUuid" class="tsd-kind-icon">is<wbr>Uuid</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="Util.html#warn" class="tsd-kind-icon">warn</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,22 +101,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Type aliases</h2>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace">
-					<a name="nullvalue" class="tsd-anchor"></a>
+					<a name="NullValue" class="tsd-anchor"></a>
 					<h3>Null<wbr>Value</h3>
 					<div class="tsd-signature tsd-kind-icon">Null<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/51b5868/src/util.ts#L3">util.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/5001b3d/src/util.ts#L4">util.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace">
-					<a name="packagedetails" class="tsd-anchor"></a>
+					<a name="PackageDetails" class="tsd-anchor"></a>
 					<h3>Package<wbr>Details</h3>
 					<div class="tsd-signature tsd-kind-icon">Package<wbr>Details<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>version<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/51b5868/src/util.ts#L4">util.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/5001b3d/src/util.ts#L5">util.ts:5</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -129,12 +132,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Variables</h2>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-namespace">
-					<a name="packagedetails-1" class="tsd-anchor"></a>
+					<a name="packageDetails" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> package<wbr>Details</h3>
-					<div class="tsd-signature tsd-kind-icon">package<wbr>Details<span class="tsd-signature-symbol">:</span> <a href="util.html#packagedetails" class="tsd-signature-type">PackageDetails</a><span class="tsd-signature-symbol"> = ...</span></div>
+					<div class="tsd-signature tsd-kind-icon">package<wbr>Details<span class="tsd-signature-symbol">:</span> <a href="Util.html#PackageDetails" class="tsd-signature-type">PackageDetails</a><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/51b5868/src/util.ts#L9">util.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/5001b3d/src/util.ts#L10">util.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -142,7 +145,53 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-namespace">
-					<a name="cleanuuid" class="tsd-anchor"></a>
+					<a name="base64Decode" class="tsd-anchor"></a>
+					<h3>base64<wbr>Decode</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-namespace">
+						<li class="tsd-signature tsd-kind-icon">base64<wbr>Decode<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/5001b3d/src/util.ts#L32">util.ts:32</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>data: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-namespace">
+					<a name="base64Encode" class="tsd-anchor"></a>
+					<h3>base64<wbr>Encode</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-namespace">
+						<li class="tsd-signature tsd-kind-icon">base64<wbr>Encode<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/5001b3d/src/util.ts#L35">util.ts:35</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>data: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-namespace">
+					<a name="cleanUuid" class="tsd-anchor"></a>
 					<h3>clean<wbr>Uuid</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-namespace">
 						<li class="tsd-signature tsd-kind-icon">clean<wbr>Uuid<span class="tsd-signature-symbol">(</span>uuid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
@@ -151,7 +200,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/51b5868/src/util.ts#L14">util.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/5001b3d/src/util.ts#L15">util.ts:15</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -165,7 +214,7 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-namespace">
-					<a name="expanduuid" class="tsd-anchor"></a>
+					<a name="expandUuid" class="tsd-anchor"></a>
 					<h3>expand<wbr>Uuid</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-namespace">
 						<li class="tsd-signature tsd-kind-icon">expand<wbr>Uuid<span class="tsd-signature-symbol">(</span>uuid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
@@ -174,7 +223,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/51b5868/src/util.ts#L17">util.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/5001b3d/src/util.ts#L18">util.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -188,7 +237,7 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-namespace">
-					<a name="isuuid" class="tsd-anchor"></a>
+					<a name="isUuid" class="tsd-anchor"></a>
 					<h3>is<wbr>Uuid</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-namespace">
 						<li class="tsd-signature tsd-kind-icon">is<wbr>Uuid<span class="tsd-signature-symbol">(</span>uuid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
@@ -197,7 +246,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/51b5868/src/util.ts#L11">util.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/5001b3d/src/util.ts#L12">util.ts:12</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -207,6 +256,29 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-namespace">
+					<a name="warn" class="tsd-anchor"></a>
+					<h3>warn</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-namespace">
+						<li class="tsd-signature tsd-kind-icon">warn<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>msg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/tecc/mojang.js/blob/5001b3d/src/util.ts#L39">util.ts:39</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>msg: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -240,38 +312,47 @@
 						<a href="../modules.html">Exports</a>
 					</li>
 					<li class=" tsd-kind-namespace">
-						<a href="base.html">Base</a>
+						<a href="Base.html">Base</a>
 					</li>
 					<li class=" tsd-kind-namespace">
-						<a href="mojang.html">Mojang</a>
+						<a href="Mojang.html">Mojang</a>
 					</li>
 					<li class="current tsd-kind-namespace">
-						<a href="util.html">Util</a>
+						<a href="Util.html">Util</a>
 					</li>
 					<li class=" tsd-kind-namespace">
-						<a href="yggdrasil.html">Yggdrasil</a>
+						<a href="Yggdrasil.html">Yggdrasil</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
-						<a href="util.html#nullvalue" class="tsd-kind-icon">Null<wbr>Value</a>
+						<a href="Util.html#NullValue" class="tsd-kind-icon">Null<wbr>Value</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
-						<a href="util.html#packagedetails" class="tsd-kind-icon">Package<wbr>Details</a>
+						<a href="Util.html#PackageDetails" class="tsd-kind-icon">Package<wbr>Details</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-namespace">
-						<a href="util.html#packagedetails-1" class="tsd-kind-icon">package<wbr>Details</a>
+						<a href="Util.html#packageDetails" class="tsd-kind-icon">package<wbr>Details</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-namespace">
-						<a href="util.html#cleanuuid" class="tsd-kind-icon">clean<wbr>Uuid</a>
+						<a href="Util.html#base64Decode" class="tsd-kind-icon">base64<wbr>Decode</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-namespace">
-						<a href="util.html#expanduuid" class="tsd-kind-icon">expand<wbr>Uuid</a>
+						<a href="Util.html#base64Encode" class="tsd-kind-icon">base64<wbr>Encode</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-namespace">
-						<a href="util.html#isuuid" class="tsd-kind-icon">is<wbr>Uuid</a>
+						<a href="Util.html#cleanUuid" class="tsd-kind-icon">clean<wbr>Uuid</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-namespace">
+						<a href="Util.html#expandUuid" class="tsd-kind-icon">expand<wbr>Uuid</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-namespace">
+						<a href="Util.html#isUuid" class="tsd-kind-icon">is<wbr>Uuid</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-namespace">
+						<a href="Util.html#warn" class="tsd-kind-icon">warn</a>
 					</li>
 				</ul>
 			</nav>

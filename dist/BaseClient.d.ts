@@ -21,8 +21,9 @@ export declare abstract class BaseClient {
     /**
      * Constructs a new API client.
      * @param baseUrl The base URL for requests made by this client.
+     * @param useCache Whether or not to use caching
      */
-    constructor(baseUrl: string);
+    constructor(baseUrl: string, useCache?: boolean);
     /**
      * Gets a URL based on the {@link BaseClient.baseUrl} and path specified.
      * Accepts query parameters.

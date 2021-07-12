@@ -56,10 +56,12 @@ export declare class PlayerProfile {
  * The specifications for the API this class wraps around is available at {@link https://wiki.vg/Mojang_API}.
  */
 export declare class Client extends BaseClient {
+    private accessToken?;
     /**
      * Constructs a new {@link Client Mojang API} client.
      */
-    constructor();
+    constructor(accessToken?: string);
+    setAccessToken(accessToken: string): void;
     /**
      * Gets a players UUID by their username.
      * You can choose when the username should've been used, instead of whoever as it now with this.
@@ -81,5 +83,23 @@ export declare class Client extends BaseClient {
      * @returns {Promise<PlayerNameHistory>} The players name history
      */
     getNameHistory(uuid: string): Promise<PlayerNameHistory>;
+    /**
+     * Gets a players' profile.
+     * @param uuid The UUID of the player to get the profile of.
+     */
     getProfile(uuid: string): Promise<PlayerProfile>;
+    /**
+     * Gets the servers that Mojang has blocked.
+     * @returns {Promise<string[]>} A list of SHA1 hashes for the hostnames that Mojang have blocked.
+     */
+    getBlockedServers(): Promise<string[]>;
+    /**
+     * Checks if a name is available.
+     *
+     * > **NOTE**<br>
+     * > This method requires the access token to be set.
+     *
+     * @param name The name to check.
+     */
+    isNameAvailable(name: string): Promise<boolean>;
 }
