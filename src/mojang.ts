@@ -107,12 +107,19 @@ export class PlayerProfile {
  * The specifications for the API this class wraps around is available at {@link https://wiki.vg/Mojang_API}.
  */
 export class Client extends BaseClient {
+    private accessToken?: string
     /**
      * Constructs a new {@link Client Mojang API} client.
      */
-    constructor() {
+    constructor(accessToken?: string) {
         super('https://api.mojang.com');
         this.agent.set('Content-Type', 'application/json');
+        if (accessToken) this.setAccessToken(accessToken);
+    }
+
+    setAccessToken(accessToken: string): void {
+        this.accessToken = accessToken;
+        this.agent.auth(accessToken, {type: 'bearer'});
     }
 
     /**
@@ -198,12 +205,50 @@ export class Client extends BaseClient {
         }));
     }
 
+    /**
+     * Gets a players' profile.
+     * @param uuid The UUID of the player to get the profile of.
+     */
     getProfile(uuid: string): Promise<PlayerProfile> {
         return new Promise<PlayerProfile>((resolve, reject) => {
             this.agent.get(`https://sessionserver.mojang.com/session/minecraft/profile/${uuid}`)
                 .then((response) => {
                     const profile: PlayerProfile = new PlayerProfile(response.body);
                     resolve(profile);
+                })
+                .catch(reject);
+        });
+    }
+
+    /**
+     * Gets the servers that Mojang has blocked.
+     * @returns {Promise<string[]>} A list of SHA1 hashes for the hostnames that Mojang have blocked.
+     */
+    getBlockedServers(): Promise<string[]> {
+        return new Promise<string[]>((resolve, reject) => {
+            this.agent.get('https://sessionserver.mojang.com/blockedservers')
+                .then((response) => {
+                    resolve(response.text.split(/\s/g));
+                })
+                .catch(reject);
+        });
+    }
+
+    // BEYOND THIS POINT LIES ENDPOINTS THAT REQUIRE AUTHENTICATION
+
+    /**
+     * Checks if a name is available.
+     *
+     * > **NOTE**<br>
+     * > This method requires the access token to be set.
+     *
+     * @param name The name to check.
+     */
+    isNameAvailable(name: string): Promise<boolean> {
+        return new Promise<boolean>((resolve, reject) => {
+            this.agent.get(`https://api.minecraftservices.com/minecraft/profile/name/${name}/available`)
+                .then((response) => {
+                    resolve(response.body.status == 'AVAILABLE');
                 })
                 .catch(reject);
         });

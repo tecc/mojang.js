@@ -2,14 +2,21 @@
 const stream = require('stream');
 const fs = require('fs');
 const path = require('path');
-const tests = ['lint', 'prototypes', 'getUuid', 'getNameHistory', 'getProfile'];
+const tests = [
+    // general
+    'lint', 'prototypes',
+    // mojang
+    'getUuid', 'getNameHistory', 'getProfile', 'getBlockedServers', 'generateClientToken',
+    // yggdrasil
+    'yggAuthenticate'
+];
 
 let successfulTests = 0;
 
 const stdoutWrite = process.stdout.write.bind(process.stdout);
 const stderrWrite = process.stderr.write.bind(process.stderr);
 function overrideOutput(stdout, stderr) {
-    return; // see Duplex
+    //return; // see Duplex
     process.stdout.write = stdout.write.bind(stdout);
     process.stderr.write = stderr.write.bind(stderr);
 }
@@ -50,38 +57,44 @@ function DuplexStream() {
 
 async function runTests() {
     console.log(`RUNNING TESTS [${tests.join(', ')}]`);
-    for (let testName of tests) {
-        console.log(`\nRunning test ${testName}`);
-        const testStdout = DuplexStream();
+    try {
+        for (let testName of tests) {
+            console.log(`\nRunning test ${testName}`);
+            const testStdout = DuplexStream();
 
-        testStdout.setEncoding('utf-8');
-        testStdout.write(`--- OUTPUT FOR TEST '${testName}' ---\n\n`);
-        testStdout.write('test');
-        try {
-            const func = require(`./tests/${testName}`);
-            if (typeof(func) != 'function') {
-                console.warn(`Test ${testName} is not a function!`);
-                continue;
+            testStdout.setEncoding('utf-8');
+            testStdout.write(`--- OUTPUT FOR TEST '${testName}' ---\n\n`);
+            testStdout.write('test');
+            try {
+                const func = require(`./tests/${testName}`);
+                if (typeof(func) != 'function') {
+                    console.warn(`Test ${testName} is not a function!`);
+                    continue;
+                }
+                overrideOutput(testStdout, testStdout);
+                await func();
+                resetOutput();
+                successfulTests++;
+                testStdout.write('\n\n--- END OUTPUT ---');
+            } catch (e) {
+                resetOutput();
+                console.error(`Error running test '${testName}'`, e.toString());
+                // console.log('Printing test output');
+                // console.log(testStdout.read());
             }
-            overrideOutput(testStdout, testStdout);
-            await func();
             resetOutput();
-            successfulTests++;
-            testStdout.write('\n\n--- END OUTPUT ---');
-        } catch (e) {
-            resetOutput();
-            console.error(`Error running test '${testName}'`, e.toString());
-            // console.log('Printing test output');
-            // console.log(testStdout.read());
+            testStdout.uncork();
+            testStdout.end();
+            testStdout.destroy();
         }
+    } catch (e) {
         resetOutput();
-        testStdout.uncork();
-        testStdout.end();
-        testStdout.destroy();
+        console.log('Error whilst running tests', e);
     }
+    console.log('Done with tests...');
 }
 
-runTests().then(() => {
+function done() {
     let unsuccessful = tests.length - successfulTests;
     let success = successfulTests / tests.length;
 
@@ -94,4 +107,6 @@ runTests().then(() => {
         console.error('Tests failed, exiting');
         process.exit(1);
     }
-});
+}
+
+runTests().finally(done);

@@ -23,5 +23,5 @@ module.exports = async function () {
 
     noneIsUndefined('MojangJS', MojangJS);
 
-    // TODO: prototype checking
+    // TODO: prototype checking using typescript, kinda bad using this system
 };

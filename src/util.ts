@@ -32,6 +32,10 @@ export function expandUuid(uuid: string): string {
 export function base64Decode(data: string): string {
     return Base64.decode(data);
 }
-export function base64encode(data: any): string {
+export function base64Encode(data: any): string {
     return Base64.encode(data.toString());
+}
+
+export function warn(...msg: any): void {
+    return console.warn('[mojang.js]', ...msg);
 }

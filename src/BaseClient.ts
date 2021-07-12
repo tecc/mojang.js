@@ -29,15 +29,18 @@ export abstract class BaseClient {
     /**
      * Constructs a new API client.
      * @param baseUrl The base URL for requests made by this client.
+     * @param useCache Whether or not to use caching
      */
-    constructor(baseUrl: string) {
+    constructor(baseUrl: string, useCache = true) {
         // base constructions
         this.baseUrl = baseUrl;
         this.agent = superagent.agent();
 
-        // enable caching
-        this.cache = new CacheModule({ defaultExpiration: 60 });
-        this.agent.use(cachePlugin(this.cache));
+        if (useCache) {
+            // enable caching
+            this.cache = new CacheModule({ defaultExpiration: 60 });
+            this.agent.use(cachePlugin(this.cache));
+        }
     }
     /**
      * Gets a URL based on the {@link BaseClient.baseUrl} and path specified.
