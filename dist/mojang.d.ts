@@ -11,6 +11,8 @@ export declare type PlayerNameData = {
 };
 /**
  * Entry to {@link PlayerNameHistory}.
+ *
+ * Provided by {@link Client.getNameHistory}
  */
 export declare type PlayerNameHistoryEntry = {
     /**
@@ -51,9 +53,15 @@ export declare class PlayerProfile {
     getSkin(): PlayerSkin | NullValue;
     getCape(): string | NullValue;
 }
+export declare type NameChangeResponse = {
+    newName: string;
+    id: string;
+};
 /**
  * Mojang API client wrapper.
  * The specifications for the API this class wraps around is available at {@link https://wiki.vg/Mojang_API}.
+ *
+ * @todo Most authenticated requests cannot yet be sent using this client.
  */
 export declare class Client extends BaseClient {
     private accessToken?;
@@ -100,6 +108,14 @@ export declare class Client extends BaseClient {
      * > This method requires the access token to be set.
      *
      * @param name The name to check.
+     * @param accessToken The access token to use. If unspecified, defaults to the clients access token.
      */
-    isNameAvailable(name: string): Promise<boolean>;
+    isNameAvailable(name: string, accessToken?: string | NullValue): Promise<boolean>;
+    /**
+     * Changes the name of the access tokens corresponding user.
+     *
+     * @param name The name to change to.
+     * @param accessToken The access token of the player to change the name of. If unspecified, defaults to the clients access token.
+     */
+    changeName(name: string, accessToken?: string | NullValue): Promise<NameChangeResponse>;
 }

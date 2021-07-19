@@ -5,10 +5,10 @@ import cachePlugin from 'superagent-cache-plugin';
 // @ts-ignore
 import CacheModule from 'cache-service-cache-module';
 
-import * as Util from './util';
 import type { NullValue } from './util';
+import * as Util from './util';
 
-export type QueryParams = {[key: string]: string | number | NullValue};
+export type QueryParams = { [key: string]: string | number | NullValue };
 export type HTTPMethod = 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH'
 
 export abstract class BaseClient {
@@ -19,33 +19,44 @@ export abstract class BaseClient {
     /**
      * The underlying agent, from Superagent.
      */
-    agent: superagent.SuperAgentStatic & superagent.Request
+    agent: superagent.SuperAgentStatic & superagent.Request;
     /**
      * The cache module.
      * Any type, since the package used for caching doesn't provide
      */
-    cache: any
+    cache: any;
+
+    private defaultAuth: () => string | NullValue
 
     /**
      * Constructs a new API client.
      * @param baseUrl The base URL for requests made by this client.
      * @param useCache Whether or not to use caching
+     * @param defaultAuth The default authorisation token to use.
      */
-    constructor(baseUrl: string, useCache = true) {
+    constructor(baseUrl: string, useCache = true, defaultAuth?: () => string | NullValue) {
         // base constructions
         this.baseUrl = baseUrl;
         this.agent = superagent.agent();
 
         if (useCache) {
             // enable caching
-            this.cache = new CacheModule({ defaultExpiration: 60 });
+            this.cache = new CacheModule({defaultExpiration: 60});
             this.agent.use(cachePlugin(this.cache));
         }
+
+        if (defaultAuth) {
+            // has default authorisation
+            this.defaultAuth = defaultAuth;
+        } else {
+            this.defaultAuth = () => null;
+        }
     }
+
     /**
      * Gets a URL based on the {@link BaseClient.baseUrl} and path specified.
      * Accepts query parameters.
-     * 
+     *
      * @param path The path to append
      * @param params The query parameters
      */
@@ -59,40 +70,56 @@ export abstract class BaseClient {
         return url.toString();
     }
 
-    request(method: HTTPMethod, path: string, queryParams: QueryParams): superagent.Request {
+    request(method: HTTPMethod, path: string, queryParams: QueryParams, auth: string | NullValue = this.defaultAuth()): superagent.Request {
+        let r;
+        switch (method) {
+        case 'GET':
+            r = this.agent.get;
+            break;
+        case 'HEAD':
+            r = this.agent.head;
+            break;
+        case 'POST':
+            r = this.agent.post;
+            break;
+        case 'PUT':
+            r = this.agent.put;
+            break;
+        case 'DELETE':
+            r = this.agent.delete;
+            break;
+        case 'CONNECT':
+            r = this.agent.connect;
+            break;
+        case 'OPTIONS':
+            r = this.agent.options;
+            break;
+        case 'TRACE':
+            r = this.agent.trace;
+            break;
+        case 'PATCH':
+            r = this.agent.patch;
+            break;
+        default:
+            throw new Error(`Invalid HTTP method '${method}`);
+        }
         const url = this.url(path, queryParams);
-        const req = () => {
-            switch (method) {
-            case 'GET':
-                return this.agent.get(url);
-            case 'HEAD':
-                return this.agent.head(url);
-            case 'POST':
-                return this.agent.post(url);
-            case 'PUT':
-                return this.agent.put(url);
-            case 'DELETE':
-                return this.agent.delete(url);
-            case 'CONNECT':
-                return this.agent.connect(url);
-            case 'OPTIONS':
-                return this.agent.options(url);
-            case 'TRACE':
-                return this.agent.trace(url);
-            case 'PATCH':
-                return this.agent.patch(url);
-            default:
-                throw new Error(`Invalid HTTP method '${method}`);
-            }
-        };
 
-        return req()
+        let req = r.bind(this.agent)(url)
             .set('User-Agent', `Mojang.JS/${Util.packageDetails.version}`);
+        if (auth) req = req.auth(auth, { type: 'bearer' });
+        return req;
     }
-    get(path: string, queryParams: QueryParams = {}): superagent.Request {
-        return this.request('GET', path, queryParams);
+
+    get(path: string, queryParams: QueryParams = {}, auth: string | NullValue = this.defaultAuth()): superagent.Request {
+        return this.request('GET', path, queryParams, auth);
     }
-    post(path: string, queryParams: QueryParams = {}): superagent.Request {
-        return this.request('POST', path, queryParams);
+
+    post(path: string, queryParams: QueryParams = {}, auth: string | NullValue = this.defaultAuth()): superagent.Request {
+        return this.request('POST', path, queryParams, auth);
+    }
+
+    put(path: string, queryParams: QueryParams = {}, auth: string | NullValue = this.defaultAuth()): superagent.Request {
+        return this.request('PUT', path, queryParams, auth);
     }
 }

@@ -32,7 +32,7 @@
   "bugs": {
     "url": "https://github.com/tecc/mojang.js/issues"
   },
-  "homepage": "https://tecc.me/mojang.js",
+  "homepage": "https://docs.tecc.me/mojang.js",
   "devDependencies": {
     "@types/base-64": "^1.0.0",
     "@types/node": "^15.12.5",

@@ -1,6 +1,7 @@
-import { BaseClient } from './BaseClient';
+import { BaseClient, HTTPMethod } from './BaseClient';
 import type { NullValue } from './util';
 import * as Util from './util';
+import superagent from 'superagent';
 
 /**
  * Player name data.
@@ -14,6 +15,8 @@ export type PlayerNameData = {
 
 /**
  * Entry to {@link PlayerNameHistory}.
+ *
+ * Provided by {@link Client.getNameHistory}
  */
 export type PlayerNameHistoryEntry = {
     /**
@@ -102,9 +105,16 @@ export class PlayerProfile {
     }
 }
 
+export type NameChangeResponse = {
+    newName: string,
+    id: string
+};
+
 /**
  * Mojang API client wrapper.
  * The specifications for the API this class wraps around is available at {@link https://wiki.vg/Mojang_API}.
+ *
+ * @todo Most authenticated requests cannot yet be sent using this client.
  */
 export class Client extends BaseClient {
     private accessToken?: string
@@ -112,14 +122,13 @@ export class Client extends BaseClient {
      * Constructs a new {@link Client Mojang API} client.
      */
     constructor(accessToken?: string) {
-        super('https://api.mojang.com');
+        super('https://api.mojang.com', true, () => this.accessToken);
         this.agent.set('Content-Type', 'application/json');
         if (accessToken) this.setAccessToken(accessToken);
     }
 
     setAccessToken(accessToken: string): void {
         this.accessToken = accessToken;
-        this.agent.auth(accessToken, {type: 'bearer'});
     }
 
     /**
@@ -137,7 +146,7 @@ export class Client extends BaseClient {
                 timestamp = at.getTime() / 1000; // get rid of milliseconds
             }
 
-            this.get('/users/profiles/minecraft/' + username, { at: timestamp })
+            this.get(`/users/profiles/minecraft/${username}`, { at: timestamp })
                 .then((response) => {
                     const data: PlayerNameData = response.body;
                     data.id = Util.expandUuid(data.id);
@@ -226,7 +235,7 @@ export class Client extends BaseClient {
      */
     getBlockedServers(): Promise<string[]> {
         return new Promise<string[]>((resolve, reject) => {
-            this.agent.get('https://sessionserver.mojang.com/blockedservers')
+            this.get('https://sessionserver.mojang.com/blockedservers')
                 .then((response) => {
                     resolve(response.text.split(/\s/g));
                 })
@@ -243,12 +252,43 @@ export class Client extends BaseClient {
      * > This method requires the access token to be set.
      *
      * @param name The name to check.
+     * @param accessToken The access token to use. If unspecified, defaults to the clients access token.
      */
-    isNameAvailable(name: string): Promise<boolean> {
+    isNameAvailable(name: string, accessToken: string | NullValue = this.accessToken): Promise<boolean> {
         return new Promise<boolean>((resolve, reject) => {
-            this.agent.get(`https://api.minecraftservices.com/minecraft/profile/name/${name}/available`)
+            if (!accessToken) {
+                reject('isNameAvailable requires an access token!');
+                return;
+            }
+
+            this.get(`https://api.minecraftservices.com/minecraft/profile/name/${name}/available`)
                 .then((response) => {
                     resolve(response.body.status == 'AVAILABLE');
+                })
+                .catch(reject);
+        });
+    }
+
+    /**
+     * Changes the name of the access tokens corresponding user.
+     *
+     * @param name The name to change to.
+     * @param accessToken The access token of the player to change the name of. If unspecified, defaults to the clients access token.
+     */
+    changeName(name: string, accessToken: string | NullValue = this.accessToken): Promise<NameChangeResponse> {
+        return new Promise<NameChangeResponse>((resolve, reject) => {
+            if (!accessToken) {
+                reject('changeName requires an access token!');
+                return;
+            }
+
+            this.put(`https://api.minecraftservices.com/minecraft/profile/name/${name}`)
+                .then((response) => {
+                    const body = response.body;
+                    resolve({
+                        newName: body.name,
+                        id: body.skins[0].id
+                    });
                 })
                 .catch(reject);
         });

@@ -18,12 +18,14 @@ export declare abstract class BaseClient {
      * Any type, since the package used for caching doesn't provide
      */
     cache: any;
+    private defaultAuth;
     /**
      * Constructs a new API client.
      * @param baseUrl The base URL for requests made by this client.
      * @param useCache Whether or not to use caching
+     * @param defaultAuth The default authorisation token to use.
      */
-    constructor(baseUrl: string, useCache?: boolean);
+    constructor(baseUrl: string, useCache?: boolean, defaultAuth?: () => string | NullValue);
     /**
      * Gets a URL based on the {@link BaseClient.baseUrl} and path specified.
      * Accepts query parameters.
@@ -32,7 +34,8 @@ export declare abstract class BaseClient {
      * @param params The query parameters
      */
     url(path: string, params: QueryParams): string;
-    request(method: HTTPMethod, path: string, queryParams: QueryParams): superagent.Request;
-    get(path: string, queryParams?: QueryParams): superagent.Request;
-    post(path: string, queryParams?: QueryParams): superagent.Request;
+    request(method: HTTPMethod, path: string, queryParams: QueryParams, auth?: string | NullValue): superagent.Request;
+    get(path: string, queryParams?: QueryParams, auth?: string | NullValue): superagent.Request;
+    post(path: string, queryParams?: QueryParams, auth?: string | NullValue): superagent.Request;
+    put(path: string, queryParams?: QueryParams, auth?: string | NullValue): superagent.Request;
 }

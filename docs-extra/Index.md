@@ -14,13 +14,13 @@ View the [license file]{@page License} for the full license.
 
 ## Installation
 
-To install **mojang.js**, you only need to run `npm install  @tecc/mojang.js`.
+To install **mojang.js**, you only need to run `npm install @tecc/mojang.js` or `yarn add @tecc/mojang.js`.
 
 If you're using TypeScript, don't worry - `mojang.js` uses TypeScript too under the hood, and provides complete type declarations.
 
 ## Documentation
 
-All documentation is available at [the project page](https://tecc.me/mojang.js). 
+All documentation is available at [the project page](https://docs.tecc.me/mojang.js). 
 If you find that any documentation is missing, unclear, or incomplete, [open an issue over on GitHub](https://github.com/tecc/mojang.js/issues).
 
 For more detailed examples, please view the [examples]{@page List of examples}.

@@ -64,7 +64,6 @@ async function runTests() {
 
             testStdout.setEncoding('utf-8');
             testStdout.write(`--- OUTPUT FOR TEST '${testName}' ---\n\n`);
-            testStdout.write('test');
             try {
                 const func = require(`./tests/${testName}`);
                 if (typeof(func) != 'function') {
