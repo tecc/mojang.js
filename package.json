@@ -1,6 +1,6 @@
 {
   "name": "@tecc/mojang.js",
-  "version": "0.2.0-alpha",
+  "version": "0.2.1-alpha",
   "description": "mojang.js is a simple wrapper for Mojangs APIs, written in TypeScript.",
   "main": "dist/index.js",
   "types": "dist/lib.d.ts",
